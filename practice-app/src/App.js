@@ -3,18 +3,7 @@ import "./App.css";
 
 export default class App extends Component {
   state = {
-    todoData: [
-      {
-        id: "1",
-        title: "Study",
-        completed: true,
-      },
-      {
-        id: "2",
-        title: "Clean",
-        completed: false,
-      },
-    ],
+    todoData: [],
     value: "",
   }
 
@@ -27,11 +16,11 @@ export default class App extends Component {
     float: "right"
   }
 
-  getStyle = () => {
+  getStyle = (completed) => {
     return {
       padding: "10px",
       borderBottom: "1px #ccc dotted",
-      textDecoration: "none"
+      textDecoration: completed ? "line-through" : "none",
     }
   }
 
@@ -54,7 +43,15 @@ export default class App extends Component {
       completed: false,
     };
     // spread 연산자로 기존 state 추가
-    this.setState({ todoData: [...this.state.todoData, newData] });
+    this.setState({ todoData: [...this.state.todoData, newData], value: "" });
+  }
+
+  handleCompletedChange = (id) => {
+    let newTodoData = this.state.todoData.map((data) => {
+      if(data.id === id) data.completed = !data.completed;
+      return data; 
+    });
+    this.setState({ todoData: newTodoData });
   }
 
   render() {
@@ -81,10 +78,18 @@ export default class App extends Component {
             />
           </form>
           {this.state.todoData.map((data) => (
-            <div style={this.getStyle()} key={data.id}>
-              <input type="checkbox" defaultChecked={false} />
+            <div style={this.getStyle(data.completed)} key={data.id}>
+              <input 
+                type="checkbox"
+                onChange={() => this.handleCompletedChange(data.id)}
+                defaultChecked={false} />
               {data.title}
-              <button style={this.btnStyle} onClick={()=>this.handleClick(data.id)}>x</button>
+              <button 
+                style={this.btnStyle} 
+                onClick={() => this.handleClick(data.id)}
+              >
+                x
+              </button>
             </div>
           ))}
         </div>
