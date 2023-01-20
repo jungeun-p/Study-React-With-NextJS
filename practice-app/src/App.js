@@ -13,11 +13,24 @@ export default class App extends Component {
 
   getStyle = () => {
     return {
-      padding: "20px",
+      padding: "10px",
       borderBottom: "1px #ccc dotted",
       textDecoration: "none"
     }
   }
+
+  todoData = [
+    {
+      id: "1",
+      title: "Study 🔥",
+      completed: true,
+    },
+    {
+      id: "2",
+      title: "Clean 🪠",
+      completed: false,
+    }
+  ]
   render() {
     return (
       <div className="container">
@@ -25,16 +38,13 @@ export default class App extends Component {
           <div className="title">
               <h1>Todo List 📝</h1>
           </div>
-          <div style={this.getStyle()}>
-            <input type="checkbox" defaultChecked={false} />
-            Study
-            <button style={this.btnStyle}>x</button>
-          </div>
-          <div style={this.getStyle()}>
-            <input type="checkbox" defaultChecked={false} />
-            Clean
-            <button style={this.btnStyle}>x</button>
-          </div>
+          {this.todoData.map((data) => (
+            <div style={this.getStyle()} key={data.id}>
+              <input type="checkbox" defaultChecked={false} />
+              {data.title}
+              <button style={this.btnStyle}>x</button>
+            </div>
+          ))}
         </div>
       </div>
     )
