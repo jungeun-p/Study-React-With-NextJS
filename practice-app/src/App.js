@@ -2,6 +2,22 @@ import { Component } from "react";
 import "./App.css";
 
 export default class App extends Component {
+  state = {
+    todoData: [
+      {
+        id: "1",
+        title: "Study",
+        completed: true,
+      },
+      {
+        id: "2",
+        title: "Clean",
+        completed: false,
+      },
+    ],
+    value: "",
+  }
+
   btnStyle = {
     color: "#fff",
     border: "none",
@@ -19,22 +35,10 @@ export default class App extends Component {
     }
   }
 
-  todoData = [
-    {
-      id: "1",
-      title: "Study 🔥",
-      completed: true,
-    },
-    {
-      id: "2",
-      title: "Clean 🪠",
-      completed: false,
-    }
-  ]
-
   handleClick = (id) => {
-    const newTodoData = this.todoData.filter(data => data.id !== id);
-    console.log('newTodoData', newTodoData); 
+    const newTodoData = this.state.todoData.filter(data => data.id !== id);
+    this.setState({ todoData: newTodoData });
+    // console.log('newTodoData', newTodoData); 
   }
 
   render() {
@@ -44,7 +48,7 @@ export default class App extends Component {
           <div className="title">
               <h1>Todo List 📝</h1>
           </div>
-          {this.todoData.map((data) => (
+          {this.state.todoData.map((data) => (
             <div style={this.getStyle()} key={data.id}>
               <input type="checkbox" defaultChecked={false} />
               {data.title}
