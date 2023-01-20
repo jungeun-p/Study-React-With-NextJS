@@ -41,6 +41,22 @@ export default class App extends Component {
     // console.log('newTodoData', newTodoData); 
   }
 
+  handleChange = (e) => {
+    this.setState({ value: e.target.value });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault(); // Reload 방지
+    // 새로운 입력된 데이터
+    let newData = {
+      id: Date.now(),
+      title: this.state.value,
+      completed: false,
+    };
+    // spread 연산자로 기존 state 추가
+    this.setState({ todoData: [...this.state.todoData, newData] });
+  }
+
   render() {
     return (
       <div className="container">
@@ -48,6 +64,22 @@ export default class App extends Component {
           <div className="title">
               <h1>Todo List 📝</h1>
           </div>
+          <form style={{ display: 'flex' }} onSubmit={this.handleSubmit}>
+            <input 
+              type="text"
+              name="value"
+              style={{ flex: '10', padding: '5px' }}
+              placeholder="write your work to do"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+            <input 
+              type="submit"
+              value="input"
+              className="btn" 
+              style={{ flex: '1' }}
+            />
+          </form>
           {this.state.todoData.map((data) => (
             <div style={this.getStyle()} key={data.id}>
               <input type="checkbox" defaultChecked={false} />
