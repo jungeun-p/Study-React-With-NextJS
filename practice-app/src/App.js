@@ -1,8 +1,15 @@
 import { Component, useState } from "react";
 import "./App.css";
+import TodoApp from "./TodoApp";
 
 export default function App() {
-  const [todoData, setTodoData] = useState([]);
+  const [todoData, setTodoData] = useState([
+    {
+      id:1,
+      completed: true,
+      title: 1,
+    }
+  ]);
   const [value, setValue] = useState("")
 
   const btnStyle = {
@@ -61,7 +68,8 @@ export default function App() {
         <div className="title">
             <h1>Todo List 📝</h1>
         </div>
-        <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
+        <TodoApp />
+        {/* <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
           <input 
             type="text"
             name="value"
@@ -76,8 +84,8 @@ export default function App() {
             className="btn" 
             style={{ flex: '1' }}
           />
-        </form>
-        {todoData.map((data) => (
+        </form> */}
+        {/* {todoData.map((data) => (
           <div style={getStyle(data.completed)} key={data.id}>
             <input 
               type="checkbox"
@@ -91,7 +99,7 @@ export default function App() {
               😵
             </button>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   )
