@@ -7,7 +7,7 @@ export default function App() {
     <div className="container">
       <div className="todoBlock">
         <div className="title">
-            <h1>Todo List 📝</h1>
+            <h1 className="text-3xl font-bold underline">Todo List 📝</h1>
         </div>
         <TodoApp />
       </div>
