@@ -7,7 +7,8 @@ const List = React.memo(({
     todoData,
     setTodoData,
     provided,
-    snapshot
+    snapshot,
+    deleteTodo
 }) => {
     console.log('List component');
     // Update
@@ -19,11 +20,11 @@ const List = React.memo(({
         setTodoData(newTodoData);
     } 
 
-    // Delete
-    const deleteTodo = (id) => {
-        const newTodoData = todoData.filter((data) => data.id !== id);
-        setTodoData(newTodoData);
-    }
+    // // Delete
+    // const deleteTodo = (id) => {
+    //     const newTodoData = todoData.filter((data) => data.id !== id);
+    //     setTodoData(newTodoData);
+    // }
     return (
         <div 
             key={id} 
