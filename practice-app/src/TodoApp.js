@@ -24,12 +24,20 @@ const TodoApp = () => {
         const newTodoData = todoData.filter((data) => data.id !== id);
         setTodoData(newTodoData);
     }, [todoData]);  
+    
+    const deleteAllTodo = () => {
+        setTodoData([]);
+    };
 
     return (
-        <>
+        <>  
+            <div className="flex justify-between mb-3">
+                <h1>Todo List 📝</h1>
+                <button onClick={deleteAllTodo}>All 😵</button>
+            </div>
             <Form value={value} setValue={setValue} CreateTodo={CreateTodo} />
             <Lists todoData={todoData} setTodoData={setTodoData} deleteTodo={deleteTodo} />
-        </>
+        </> 
     );
 };
 

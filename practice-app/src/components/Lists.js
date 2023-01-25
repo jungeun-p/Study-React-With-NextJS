@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import List from './List';
 
 const Lists = React.memo(({ todoData, setTodoData, deleteTodo }) => { // props.todoData
     console.log('Lists component');
-    const handleEnd = (result) => {
+    const handleEnd = useCallback((result) => {
         // source 항목 및 대상 위치와 같은 드래그 이벤트에 대한 정보가 포함. 
         // 위치 변경이 없을 땐 종료
         if(!result.destination) return; 
@@ -18,8 +18,7 @@ const Lists = React.memo(({ todoData, setTodoData, deleteTodo }) => { // props.t
         // 3. 원하는 자리에 reorderedItem을 insert 처리
         newTodoData.splice(result.destination.index, 0, reorderedItem);
         setTodoData(newTodoData);
-    }
-
+    }, [todoData])
     return (
         <div>
             <DragDropContext onDragEnd={handleEnd}>
