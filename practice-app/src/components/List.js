@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function List({
+const List = React.memo(({
     id,
     title,
     completed,
@@ -8,8 +8,8 @@ export default function List({
     setTodoData,
     provided,
     snapshot
-}) {
-    
+}) => {
+    console.log('List component');
     // Update
     const completedChange = (id) => {
         const newTodoData = todoData.map((data) => {
@@ -47,4 +47,6 @@ export default function List({
             </div>
         </div>
     )
-}
+})
+
+export default List

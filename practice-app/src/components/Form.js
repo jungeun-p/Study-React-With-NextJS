@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Form({ value, setValue, CreateTodo }) {
-
+const Form = React.memo(({ value, setValue, CreateTodo }) => {
+    console.log('Form component');
     const handleChange = (e) => {
         setValue(e.target.value);
     }
@@ -24,4 +24,6 @@ export default function Form({ value, setValue, CreateTodo }) {
             </form>            
         </div>
     )
-}
+})
+
+export default Form;
