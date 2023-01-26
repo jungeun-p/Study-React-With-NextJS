@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Form = React.memo(({ value, setValue, CreateTodo }) => {
-    console.log('Form component');
     const handleChange = (e) => {
         setValue(e.target.value);
     }
