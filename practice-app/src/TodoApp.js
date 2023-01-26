@@ -2,9 +2,12 @@ import React, { useCallback, useState } from 'react';
 import Form from './components/Form';
 import Lists from './components/Lists';
 
+const initialTodoData = localStorage.getItem("todoData") 
+    ? JSON.parse(localStorage.getItem("todoData")) 
+    : [];
+
 const TodoApp = () => {
-    console.log('TodoApp Component');
-    const [todoData, setTodoData] = useState([]);
+    const [todoData, setTodoData] = useState(initialTodoData);
     const [value, setValue] = useState("");
 
     // Create
@@ -16,6 +19,7 @@ const TodoApp = () => {
             completed: false,
         };
         setTodoData(prev => [...prev, newTodo]);
+        localStorage.setItem("todoData", JSON.stringify([...todoData, newTodo]));
         setValue("");
     }    
 
@@ -23,10 +27,12 @@ const TodoApp = () => {
     const deleteTodo = useCallback((id) => {
         const newTodoData = todoData.filter((data) => data.id !== id);
         setTodoData(newTodoData);
+        localStorage.setItem("todoData", JSON.stringify(newTodoData));
     }, [todoData]);  
     
     const deleteAllTodo = () => {
         setTodoData([]);
+        localStorage.clear();
     };
 
     return (

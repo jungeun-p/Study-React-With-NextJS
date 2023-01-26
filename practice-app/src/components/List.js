@@ -21,6 +21,7 @@ const List = React.memo(({
             return data;
         })
         setTodoData(newTodoData);
+        localStorage.setItem("todoData", JSON.stringify(newTodoData));
     } 
 
     
@@ -37,6 +38,7 @@ const List = React.memo(({
         });
         setTodoData(newTodoData);
         setEditing(false);
+        localStorage.setItem("todoData", JSON.stringify(newTodoData));
     }
     
     return (
