@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Nav.css';
 
 const Nav = () => {
+    const [show, setShow] = useState(false);
+
+    useEffect(()=>{
+        window.addEventListener("scroll", () => {
+            setShow(window.scrollY > 50 ? true : false);
+        })
+        // 컴포넌트를 사용하지 않을 때 함수를 더이상 호출하지 않도록 이벤트 리스너를 삭제
+        return () => {
+            window.removeEventListener("scroll", () => {})
+        }
+    }, []);
+
     return (
-        <nav className="nav">
+        <nav className={`nav ${show && "nav__black"}`}>
             <div className="nav__container">
                 <img 
                     className="nav__logo"
