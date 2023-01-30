@@ -12,7 +12,7 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
         const request = await axios.get(fetchUrl);
         setmovies(request.data.results);
     }
-    return <section>
+    return <section className="row">
         <h2>{title}</h2>
         <div className="slider">
             <div className="slider__arrow-left">
