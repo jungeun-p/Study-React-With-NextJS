@@ -4,10 +4,11 @@ import './Row.css';
 
 export default function Row({ title, fetchUrl, id, isLargeRow }) {
     const [movies, setmovies] = useState([]);
+    
     useEffect(() => {
         fetchMovieData();
     }, []);
-    console.log(movies);
+
     const fetchMovieData = async() => {
         const request = await axios.get(fetchUrl);
         setmovies(request.data.results);
@@ -15,7 +16,11 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
     return <section className="row">
         <h2>{title}</h2>
         <div className="slider">
-            <div className="slider__arrow-left">
+            <div 
+                className="slider__arrow-left" 
+                onClick={() => {
+                    document.getElementById(id).scrollLeft -= window.innerWidth - 80; // 80은 Row section margin(40), row__posters div padding(40)을 제외하는 값
+                }}>
                 <span className="arrow">
                     {"<"}
                 </span>
@@ -30,7 +35,12 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
                     />
                 ))}
             </div>
-            <div className="slider__arrow-right">
+            <div 
+                className="slider__arrow-right"
+                onClick={() => {
+                    document.getElementById(id).scrollLeft += window.innerWidth + 80;
+                }}
+            >
                 <span className="arrow">
                     {">"}
                 </span>
