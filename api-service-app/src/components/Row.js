@@ -6,7 +6,8 @@ import MovieModal from './MovieModal';
 export default function Row({ title, fetchUrl, id, isLargeRow }) {
     const [movies, setmovies] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
-    const [movieSelected, setMovieSelected] =useState({}); 
+    const [movieSelected, setMovieSelected] = useState({}); 
+    
     useEffect(() => {
         fetchMovieData();
     }, []);
