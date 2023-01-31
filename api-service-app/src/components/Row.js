@@ -1,10 +1,12 @@
 import axios from '../api/axios';
 import React, { useEffect, useState } from 'react'
 import './Row.css';
+import MovieModal from './MovieModal';
 
 export default function Row({ title, fetchUrl, id, isLargeRow }) {
     const [movies, setmovies] = useState([]);
-    
+    const [modalOpen, setModalOpen] = useState(false);
+    const [movieSelected, setMovieSelected] =useState({}); 
     useEffect(() => {
         fetchMovieData();
     }, []);
@@ -13,6 +15,12 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
         const request = await axios.get(fetchUrl);
         setmovies(request.data.results);
     }
+    
+    const handleClick = (movie) => {
+        setModalOpen(true);
+        setMovieSelected(movie);
+    }
+
     return <section className="row">
         <h2>{title}</h2>
         <div className="slider">
@@ -32,6 +40,7 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
                         className={`row__poster ${isLargeRow && "row__posterLarge"}`}
                         src={`https://image.tmdb.org/t/p/original${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
                         alt={movie.name}
+                        onClick={() => handleClick(movie)}
                     />
                 ))}
             </div>
@@ -46,6 +55,12 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
                 </span>
             </div>
         </div>
+        {modalOpen && 
+            <MovieModal 
+                {...movieSelected} // movieSelected={movieSelected}
+                setModalOpen={setModalOpen}
+            />
+        }
     </section>
 }
   
