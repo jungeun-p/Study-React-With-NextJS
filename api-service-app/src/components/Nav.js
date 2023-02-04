@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Nav.css';
 
 const Nav = () => {
     const [show, setShow] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+    const navigate = useNavigate();
 
     useEffect(()=>{
         window.addEventListener("scroll", () => {
@@ -14,6 +17,11 @@ const Nav = () => {
         }
     }, []);
 
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+        navigate(`/search?q=${e.target.value}`);
+    }
+
     return (
         <nav className={`nav ${show && "nav__black"}`}>
             <div className="nav__container">
@@ -22,6 +30,13 @@ const Nav = () => {
                     alt="Netflix logo"
                     src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" 
                     onClick={()=> window.location.reload()}
+                />
+                <input 
+                    value={searchValue}
+                    onChange={handleChange}
+                    className="nav__search"
+                    type="text"
+                    placeholder="Search Movie"
                 />
                 <img 
                     className="nav__avatar"
