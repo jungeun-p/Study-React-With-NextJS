@@ -2,7 +2,9 @@ import axios from '../api/axios';
 import React, { useEffect, useState } from 'react'
 import './Row.css';
 import MovieModal from './MovieModal';
+import { register } from 'swiper/element/bundle';
 
+register();
 export default function Row({ title, fetchUrl, id, isLargeRow }) {
     const [movies, setmovies] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
@@ -24,7 +26,8 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
 
     return <section className="row">
         <h2>{title}</h2>
-        <div className="slider">
+        <swiper-container>
+        {/* <div className="slider">
             <div 
                 className="slider__arrow-left" 
                 onClick={() => {
@@ -33,7 +36,7 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
                 <span className="arrow">
                     {"<"}
                 </span>
-            </div>
+            </div> */}
             <div id={id} className="row__posters">
                 {movies.map((movie) => (
                     <img 
@@ -45,7 +48,7 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
                     />
                 ))}
             </div>
-            <div 
+            {/* <div 
                 className="slider__arrow-right"
                 onClick={() => {
                     document.getElementById(id).scrollLeft += window.innerWidth + 80;
@@ -55,7 +58,8 @@ export default function Row({ title, fetchUrl, id, isLargeRow }) {
                     {">"}
                 </span>
             </div>
-        </div>
+        </div> */}
+        </swiper-container>
         {modalOpen && 
             <MovieModal 
                 {...movieSelected} // movieSelected={movieSelected}
