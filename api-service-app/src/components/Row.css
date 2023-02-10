@@ -158,3 +158,20 @@
     font-weight: 600 !important;
   }
   
+  .swiper-pagination {
+    text-align: right !important;
+  }
+
+  .swiper-pagination-bullet {
+    background: gray;
+    opacity: 1 !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: white;
+  }
+
+  .swiper-button-prev:after, .swiper-button-next:after {
+    color: wthie !important;
+    font-weight: 600;
+  }
