@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
-    "@types/swipe": "^2.0.28"
+    "@types/swipe": "^2.0.28",
+    "gh-pages": "^5.0.0"
   }
 }
