@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import userEvent from "@testing-library/user-event";
+import userEvent from '@testing-library/user-event'
 
 test("the counter starts at 0", () => {
   render(<App />);
@@ -23,10 +23,9 @@ test("plus button has correct text", () => {
 test("when push + button, the counter changes to 1", () => {
   render(<App />);
   // + button
-  const buttonElement = screen.getByTestId("minus-button");
-  // push + button
-  // fireEvent.click(buttonElement);
-  userEvent.click(buttonElement);
+  const buttonElement = screen.getByTestId("plus-button");
+  // push '+' button
+  fireEvent.click(buttonElement);
   // counter
   const counterElement = screen.getByTestId("counter");
   // counter changes to "1";
