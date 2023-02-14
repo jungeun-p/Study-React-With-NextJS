@@ -31,3 +31,11 @@ test("when push + button, the counter changes to 1", () => {
   // counter changes to "1";
   expect(counterElement).toHaveTextContent(1);
 });
+
+test("on/off button has blue color", () => {
+  render(<App />);
+  // on/off button
+  const buttonElement = screen.getByTestId("on/off-button");
+  expect(buttonElement).toHaveStyle({ backgroundColor: "blue" });
+  // has blue color
+});
