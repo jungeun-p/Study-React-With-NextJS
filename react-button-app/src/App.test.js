@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import userEvent from '@testing-library/user-event'
+import userEvent from "@testing-library/user-event";
 
 test("the counter starts at 0", () => {
   render(<App />);
@@ -38,4 +38,16 @@ test("on/off button has blue color", () => {
   const buttonElement = screen.getByTestId("on/off-button");
   expect(buttonElement).toHaveStyle({ backgroundColor: "blue" });
   // has blue color
+});
+
+test("Prevent the plus-minus button from being preseed when the on-off button is clicked", () => {
+  render(<App />);
+  // on/off push button
+  const buttonElement = screen.getByTestId("on/off-button");
+  // click
+  fireEvent.click(buttonElement);
+  // plus button
+  const plusButtonElement = screen.getByTestId("plus-button");
+  // to be disabled
+  expect(plusButtonElement).toBeDisabled();
 });
