@@ -1,5 +1,5 @@
 {
-  "name": "react-testing-library",
+  "name": "react-button-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -30,7 +30,6 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.34.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "eslint-plugin-testing-library": "^5.10.1"
   }
