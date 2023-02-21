@@ -31,7 +31,7 @@ export function getSortedPostsData() {
         // combine the data with the id 
         return {
             id, 
-            ...(matterResult.data as { date: string; title: string })
+            ...matterResult.data as { date: string; title: string }
         }
     })
     // sort: 배열 요소를 정렬
