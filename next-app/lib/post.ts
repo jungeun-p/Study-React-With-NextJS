@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from 'gray-matter';
+import { remark } from "remark";
+import remarkHtml from "remark-html";
 
 // process.cwd(): node를 통한 directory 절대 경로
 // path: 폴더와 파일의 경로를 지정해주는 모듈 
@@ -42,4 +44,38 @@ export function getSortedPostsData() {
             return -1
         }
     })
+}
+
+// id를 가져오는 함수
+export function getAllPostIds(){
+    const fileNames = fs.readdirSync(postsDirectory);
+    return fileNames.map((fileName) => {
+        return {
+            params: {
+                id: fileName.replace(/\.md$/, '')
+            }
+        }
+    })
+}
+
+// 전달 받은 id값을 통해 해당 디렉토리의 파일 내부의 데이터를 전달하는 함수 
+export async function getPostData(id: string){
+    // 특정 파일 path
+    const fullPath = path.join(postsDirectory, `${id}.md`);
+    const fileContents = fs.readFileSync(fullPath, 'utf-8');
+    const matterResult = matter(fileContents);
+    
+    // html markdown
+    const processedContent = await remark()
+    .use(remarkHtml)
+    .process(matterResult.content);
+    
+    // string 변환
+    const contentHtml = processedContent.toString();
+
+    return {
+        id,
+        contentHtml,
+        ...matterResult.data as { date: string; title: string }
+    }
 }
