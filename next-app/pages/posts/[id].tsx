@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react'
 
-interface postData {
+interface postDataType {
     postData: {
         title: string
         date: string
@@ -11,7 +11,7 @@ interface postData {
     }
 }
 
-const Post = ({ postData }: postData) => {
+const Post = ({ postData }: postDataType) => {
     return (
         <div>
             <Head>
@@ -30,23 +30,24 @@ const Post = ({ postData }: postData) => {
 
 export default Post;
 
-// path값을 받아와서 params를 전달
-export const getStaticPaths: GetStaticPaths = async () => {
-    // path id값을 반환
+// 1. 동적 라우팅을 구현하여 path(params)를 반환
+export const getStaticPaths: GetStaticPaths = () => {
+    // path id값 반환
     const paths = getAllPostIds();
-    // [{ params: {id: 'pre-rendering}. {param...} }]
+    // [{ params: {id: 'pre-rendering}, {param...} }]
     return {
         paths,
         fallback: false
     }
 }
 
-// params를 전달 받아서 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+// 2. 전달받은 params를 받아 props(data)를 반환하며 데이터 출력
+export const getStaticProps: GetStaticProps = async({ params }) => {
     const postData = await getPostData(params?.id as string);
     return {
-        props:{
+        props: {
             postData
         }
     }
+
 }

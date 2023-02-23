@@ -2,11 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import homeStyles from '@/styles/Home.module.css'
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { getSortedPostsData } from '@/lib/post'
 import Link from 'next/link'
 
-interface allPostsData {
+interface allPostsDataType {
   allPostsData: {
     date: string
     title: string
@@ -14,7 +14,7 @@ interface allPostsData {
   }[]
 }
 
-const Home = ({ allPostsData }: allPostsData) => {
+const Home = ({ allPostsData }: allPostsDataType) => {
   return (
     <div>
       <Head>
