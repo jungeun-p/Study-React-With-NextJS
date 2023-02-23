@@ -1,7 +1,9 @@
-import { getAllPostIds, getPostData, getSortedPostsData } from '@/lib/post';
+import { getAllPostIds, getPostData } from '@/lib/post';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
-import React from 'react'
+import React from 'react';
+import postStyles from '@/styles/Post.module.css'
+
 
 interface postDataType {
     postData: {
@@ -13,7 +15,7 @@ interface postDataType {
 
 const Post = ({ postData }: postDataType) => {
     return (
-        <div>
+        <div className={postStyles.container}>
             <Head>
                 <title>{postData.title}</title>
             </Head>

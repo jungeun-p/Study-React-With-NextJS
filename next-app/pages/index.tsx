@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import homeStyles from '@/styles/Home.module.css'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
 import { getSortedPostsData } from '@/lib/post'
 import Link from 'next/link'
 
@@ -16,7 +16,7 @@ interface allPostsDataType {
 
 const Home = ({ allPostsData }: allPostsDataType) => {
   return (
-    <div>
+    <div className={homeStyles.container}>
       <Head>
         <title>Peter lim</title>
       </Head>
