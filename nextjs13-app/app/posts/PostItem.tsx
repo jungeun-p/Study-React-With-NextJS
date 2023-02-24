@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import postStyles from "@/styles/Home.module.css";
+import postStyles from "@/styles/Post.module.css";
 import { useRouter } from "next/navigation";
 
 const PostItem = ({ post }: any) => {
