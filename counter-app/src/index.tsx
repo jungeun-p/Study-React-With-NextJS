@@ -13,18 +13,13 @@ const root = ReactDOM.createRoot(
 
 const store = createStore(rootReducer);
 
-store.dispatch({
-  type: "ADD_TODO",
-  text: "USE REDUX",
-});
-
 const render = () =>
   root.render(
     <React.StrictMode>
       <Provider store={store}>
         <App
-          onIncrement={() => store.dispatch({ type: "INCREMENT" })}
-          onDecrement={() => store.dispatch({ type: "DECREMENT" })}
+          // onIncrement={() => store.dispatch({ type: "INCREMENT" })}
+          // onDecrement={() => store.dispatch({ type: "DECREMENT" })}
         />
       </Provider>
     </React.StrictMode>
