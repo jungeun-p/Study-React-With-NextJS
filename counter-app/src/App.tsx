@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 type Props = {
-  value: number;
+  value: any;
   onIncrement: () => void;
   onDecrement: () => void;
 };
@@ -11,7 +11,7 @@ type Props = {
 function App({ value, onIncrement, onDecrement }: Props) {
   return (
     <div className="App">
-      Clicked: {value}
+      {/* Clicked: {value} */}
       <button onClick={onIncrement}>+</button>
       <button onClick={onDecrement}>-</button>
     </div>
