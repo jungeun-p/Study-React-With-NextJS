@@ -1,0 +1,26 @@
+.todoApp {
+  margin: 0;
+  padding: 0;
+}
+
+.todoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.todoItem {
+  width: 250px;
+  height: 100%;
+  padding: 25px;
+  margin: 10px;
+  border-radius: 25px;
+  background-color: chartreuse;
+}
+
+.todoItemTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

@@ -1,9 +1,11 @@
 import logo from './logo.svg';
+import TodoApp from './TodoApp';
+import './App.css';
 
 function App() {
   return (
-    <div>
-      TodoApp
+    <div className="container">
+      <TodoApp />
     </div>
   );
 }
