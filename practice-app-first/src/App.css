@@ -13,10 +13,14 @@
 .todoItem {
   width: 250px;
   height: 100%;
-  padding: 25px;
+  padding: 0 1em 1em 1em;
   margin: 10px;
   border-radius: 25px;
   background-color: chartreuse;
+}
+
+.finished {
+  background-color: lightgray;
 }
 
 .todoItemTitle {
