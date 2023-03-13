@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
 
 const TodoApp = () => {
@@ -23,6 +24,23 @@ const TodoApp = () => {
     },
   ];
   const [todoData, setTodoData] = useState(initialState);
+  const [todoItem, setTodoItem] = useState({
+    title: "",
+    contents: "",
+  });
+
+  // CreateTodo
+  const createTodo = (e) => {
+    e.preventDefault();
+    let newTodo = {
+      title: todoItem.title,
+      id: Date.now(),
+      contents: todoItem.contents,
+      completed: false,
+    };
+    setTodoData((prev) => [...prev, newTodo]);
+    setTodoItem("");
+  };
 
   // DeleteTodo
   const deleteTodo = (id) => {
@@ -33,6 +51,11 @@ const TodoApp = () => {
   return (
     <div className="todoApp">
       <h1>Todo App</h1>
+      <TodoForm
+        todoItem={todoItem}
+        setTodoItem={setTodoItem}
+        createTodo={createTodo}
+      />
       <div className="todoContainer">
         <TodoItem
           setTodoData={setTodoData}
