@@ -3,6 +3,7 @@
   padding: 0;
 }
 
+/* TodoItem */
 .todoContainer {
   display: flex;
   flex-wrap: wrap;
@@ -26,5 +27,20 @@
 .todoItemTitle {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+}
+
+.todoItemTitle > .title{
+  display: flex;
+  flex-direction: row;
+}
+
+.todoItemTitle > .delete{
+  cursor: pointer;
+}
+
+/* TodoForm */
+.todoForm {
+  margin: 10px;
 }
