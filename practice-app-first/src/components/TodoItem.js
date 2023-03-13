@@ -1,11 +1,10 @@
 import React from "react";
 
 const TodoItem = ({ setTodoData, todoData, deleteTodo }) => {
-  
-  // Update
+  // UpdateCompleted
   const completedChange = (id) => {
     const newTodoData = todoData.map((item) => {
-      if(item.id === id) item.completed = !item.completed;
+      if (item.id === id) item.completed = !item.completed;
       return item;
     });
     setTodoData(newTodoData);
@@ -19,13 +18,17 @@ const TodoItem = ({ setTodoData, todoData, deleteTodo }) => {
           key={todo.id}
         >
           <div className="todoItemTitle">
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => completedChange(todo.id)}
-            />
-            <h3>{todo.title}</h3>
-            <h3 onClick={() => deleteTodo(todo.id)}>❌</h3>
+            <div className="title">
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => completedChange(todo.id)}
+              />
+              <h3>{todo.title}</h3>
+            </div>
+            <h3 className="delete" onClick={() => deleteTodo(todo.id)}>
+              ❌
+            </h3>
           </div>
           <div className="todoItemContents">
             <div>{todo.contents}</div>
