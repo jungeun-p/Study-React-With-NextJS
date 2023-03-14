@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
+import TodoList from "./components/TodoList";
 
 const TodoApp = () => {
   const initialState = [
@@ -57,11 +58,16 @@ const TodoApp = () => {
         createTodo={createTodo}
       />
       <div className="todoContainer">
-        <TodoItem
+        <TodoList
           setTodoData={setTodoData}
           todoData={todoData}
           deleteTodo={deleteTodo}
         />
+        {/* <TodoItem
+          setTodoData={setTodoData}
+          todoData={todoData}
+          deleteTodo={deleteTodo}
+        /> */}
       </div>
     </div>
   );
