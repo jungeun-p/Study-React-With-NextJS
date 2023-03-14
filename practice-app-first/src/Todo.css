@@ -40,6 +40,15 @@
   cursor: pointer;
 }
 
+.todoItemButton {
+  display: flex;
+  flex-direction: row;
+}
+
+.todoItemButton > .button {
+  padding-left: 10px;
+}
+
 /* TodoForm */
 .todoForm {
   margin: 10px;
