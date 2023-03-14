@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-const TodoItem = ({ setTodoData, todoData, deleteTodo }) => {
+const TodoItem = ({
+  id,
+  title,
+  contents,
+  completed,
+  todoData,
+  setTodoData,
+  deleteTodo,
+}) => {
+  const [editing, setEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState(title);
+
   // UpdateCompleted
   const completedChange = (id) => {
     const newTodoData = todoData.map((item) => {
@@ -11,31 +22,37 @@ const TodoItem = ({ setTodoData, todoData, deleteTodo }) => {
   };
 
   return (
-    <>
-      {todoData.map((todo) => (
-        <div
-          className={`todoItem ${todo.completed ? "finished" : undefined}`}
-          key={todo.id}
-        >
+    <div className={`todoItem ${completed ? "finished" : undefined}`} key={id}>
+      {editing ? (
+        <form onSubmit={()=>{}}>
+          <input type="text" name="title" value={title} />
+        </form>
+      ) : (
+        <>
           <div className="todoItemTitle">
             <div className="title">
               <input
                 type="checkbox"
-                checked={todo.completed}
-                onChange={() => completedChange(todo.id)}
+                checked={completed}
+                onChange={() => completedChange(id)}
               />
-              <h3>{todo.title}</h3>
+              <h3>{title}</h3>
             </div>
-            <h3 className="delete" onClick={() => deleteTodo(todo.id)}>
-              ❌
-            </h3>
+            <div className="todoItemButton">
+              <h3 className="button" onClick={() => setEditing(!editing)}>
+                ✏️
+              </h3>
+              <h3 className="button" onClick={() => deleteTodo(id)}>
+                ❌
+              </h3>
+            </div>
           </div>
           <div className="todoItemContents">
-            <div>{todo.contents}</div>
+            <div>{contents}</div>
           </div>
-        </div>
-      ))}
-    </>
+        </>
+      )}
+    </div>
   );
 };
 
