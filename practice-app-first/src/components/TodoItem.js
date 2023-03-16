@@ -10,6 +10,10 @@ const TodoItem = ({
   deleteTodo,
 }) => {
   const [editing, setEditing] = useState(false);
+  const [editItem, setEditItem] = useState({
+    title,
+    contents
+  });
 
   // UpdateCompleted
   const completedChange = (id) => {
@@ -20,6 +24,26 @@ const TodoItem = ({
     setTodoData(newTodoData);
   };
 
+  // onChange
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setEditItem({...editItem, [name]: value });
+  };
+
+  // UpdateTodo
+  const updateTodo = e => {
+    e.preventDefault();
+    const newTodoData = todoData.map((todo) => {
+      if(todo.id === id) {
+        todo.title = editItem.title;
+        todo.contents = editItem.contents;
+      }
+      return todo;
+    });
+    setTodoData(newTodoData);
+    setEditing(false);
+  }
+
   return (
     <div className={`todoItem ${completed ? "finished" : undefined}`} key={id}>
       {editing ? (
@@ -29,12 +53,13 @@ const TodoItem = ({
               className="title form"
               type="text"
               name="title"
-              value={title}
+              value={editItem.title}
+              onChange={handleChange}
             />
             <div className="finish" onClick={() => setEditing(!editing)}>
               🤚
             </div>
-            <button className="update" type="submit" onClick={()=>{}}>
+            <button className="update" type="submit" onClick={updateTodo}>
               ✔️
             </button>
           </div>
@@ -43,7 +68,8 @@ const TodoItem = ({
               className="contents form"
               type="text"
               name="contents"
-              value={contents}
+              value={editItem.contents}
+              onChange={handleChange}
             />
           </div>
         </form>
