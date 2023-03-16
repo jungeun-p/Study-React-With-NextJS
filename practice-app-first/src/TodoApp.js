@@ -63,11 +63,6 @@ const TodoApp = () => {
           todoData={todoData}
           deleteTodo={deleteTodo}
         />
-        {/* <TodoItem
-          setTodoData={setTodoData}
-          todoData={todoData}
-          deleteTodo={deleteTodo}
-        /> */}
       </div>
     </div>
   );
