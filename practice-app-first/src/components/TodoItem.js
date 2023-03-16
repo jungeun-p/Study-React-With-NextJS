@@ -10,7 +10,6 @@ const TodoItem = ({
   deleteTodo,
 }) => {
   const [editing, setEditing] = useState(false);
-  const [editTitle, setEditTitle] = useState(title);
 
   // UpdateCompleted
   const completedChange = (id) => {
@@ -24,8 +23,29 @@ const TodoItem = ({
   return (
     <div className={`todoItem ${completed ? "finished" : undefined}`} key={id}>
       {editing ? (
-        <form onSubmit={()=>{}}>
-          <input type="text" name="title" value={title} />
+        <form className="todoUpdateForm">
+          <div className="todoItemTitle">
+            <input
+              className="title form"
+              type="text"
+              name="title"
+              value={title}
+            />
+            <div className="finish" onClick={() => setEditing(!editing)}>
+              🤚
+            </div>
+            <button className="update" type="submit" onClick={()=>{}}>
+              ✔️
+            </button>
+          </div>
+          <div className="todoItemContents">
+            <input
+              className="contents form"
+              type="text"
+              name="contents"
+              value={contents}
+            />
+          </div>
         </form>
       ) : (
         <>
@@ -36,19 +56,19 @@ const TodoItem = ({
                 checked={completed}
                 onChange={() => completedChange(id)}
               />
-              <h3>{title}</h3>
+              <div>{title}</div>
             </div>
             <div className="todoItemButton">
-              <h3 className="button" onClick={() => setEditing(!editing)}>
+              <div className="button" onClick={() => setEditing(!editing)}>
                 ✏️
-              </h3>
-              <h3 className="button" onClick={() => deleteTodo(id)}>
+              </div>
+              <div className="button" onClick={() => deleteTodo(id)}>
                 ❌
-              </h3>
+              </div>
             </div>
           </div>
           <div className="todoItemContents">
-            <div>{contents}</div>
+            <div className="contents">{contents}</div>
           </div>
         </>
       )}
