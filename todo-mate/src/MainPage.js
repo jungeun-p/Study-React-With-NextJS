@@ -52,7 +52,7 @@ const MainPage = () => {
   return (
     <div className="mainContainer">
       <TodoForm />
-      <TodoList todoData={todoData} />
+      <TodoList todoData={todoData} setTodoData={setTodoData} />
     </div>
   );
 };

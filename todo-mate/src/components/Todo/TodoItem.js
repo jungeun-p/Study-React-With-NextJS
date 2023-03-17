@@ -1,9 +1,20 @@
 import React from "react";
 import "./TodoItem.css";
 
-const TodoItem = ({ id, date, title, contents, completed }) => {
+const TodoItem = ({
+  id,
+  date,
+  title,
+  contents,
+  completed,
+  updateTodoCompleted,
+}) => {
   return (
-    <div className={`todoItemContainer ${id % 2 === 1 ? "black" : "white"}`}>
+    <div
+      className={`todoItemContainer 
+      ${id % 2 === 1 ? "black" : "white"} 
+      ${completed && "finished"}`}
+    >
       <div className="topWrapper">
         <div className="titleWrapper">
           <input
@@ -11,7 +22,7 @@ const TodoItem = ({ id, date, title, contents, completed }) => {
             type="checkbox"
             name="completed"
             checked={completed}
-            onChange={() => {}}
+            onChange={() => updateTodoCompleted(id)}
           />
           <div className="todoTitle">{title}</div>
         </div>

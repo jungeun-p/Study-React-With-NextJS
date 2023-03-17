@@ -2,7 +2,15 @@ import React from "react";
 import TodoItem from "./TodoItem";
 import './TodoList.css';
 
-const TodoList = ({ todoData }) => {
+const TodoList = ({ todoData, setTodoData }) => {
+  // Update todoData completed
+  const updateTodoCompleted = (id) => {
+    let newTodoData = todoData.map((todo) => {
+      if(todo.id ===id) todo.completed = !todo.completed;
+      return todo;
+    });
+    setTodoData(newTodoData);
+  }
   return (
     <div className="todoListContainer">
       {todoData.map((todo) => (
@@ -13,6 +21,7 @@ const TodoList = ({ todoData }) => {
           title={todo.title}
           contents={todo.contents}
           completed={todo.completed}
+          updateTodoCompleted={updateTodoCompleted}
         />
       ))}
     </div>
