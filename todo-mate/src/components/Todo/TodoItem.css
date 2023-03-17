@@ -9,6 +9,10 @@
   background-color: black;
   color: white;
 }
+.todoItemContainer.finished {
+  background-color: lightgray;
+  color: gray;
+}
 .titleWrapper {
   display: flex;
   flex-direction: row;
