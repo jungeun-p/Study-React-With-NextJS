@@ -3,18 +3,21 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import MainPage from "./MainPage";
 import Mypage from "./components/Mypage";
 import Header from "./components/Navigation/Header";
+import "./App.css";
 
 function App() {
   const Layout = () => {
     return (
       <div>
         <Header />
-        <Outlet />
+        <div className="mainContainer">
+          <Outlet />
+        </div>
         <Nav />
       </div>
     );
   };
-  
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
