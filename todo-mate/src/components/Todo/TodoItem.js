@@ -17,14 +17,20 @@ const TodoItem = ({
     >
       <div className="topWrapper">
         <div className="titleWrapper">
-          <input
-            className="todoCompleted"
-            type="checkbox"
-            name="completed"
-            checked={completed}
-            onChange={() => updateTodoCompleted(id)}
-          />
-          <div className="todoTitle">{title}</div>
+          <div className="todoTitleWrapper">
+            <input
+              className="todoCompleted"
+              type="checkbox"
+              name="completed"
+              checked={completed}
+              onChange={() => updateTodoCompleted(id)}
+            />
+            <div className="todoTitle">{title}</div>
+          </div>
+          <div className="todoButtonWrapper">
+            <div>✏️</div>
+            <div>❎</div>
+          </div>
         </div>
         <div className="todoContents">{contents}</div>
       </div>
