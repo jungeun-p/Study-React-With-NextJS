@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TodoForm from "./components/Todo/TodoForm";
 import TodoList from "./components/Todo/TodoList";
-import './MainPage.css';
 
 const MainPage = () => {
   const initialize = [
@@ -50,10 +49,10 @@ const MainPage = () => {
   ];
   const [todoData, setTodoData] = useState(initialize);
   return (
-    <div className="mainContainer">
+    <>
       <TodoForm />
       <TodoList todoData={todoData} setTodoData={setTodoData} />
-    </div>
+    </>
   );
 };
 
