@@ -1,0 +1,18 @@
+.navContainer {
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  background-color: black;
+  height: 3.5rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navLink {
+  color: white;
+  font-size: 1.5rem; 
+  text-decoration: none;
+}
