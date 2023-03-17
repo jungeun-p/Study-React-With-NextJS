@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TodoForm from "./components/TodoForm";
-import TodoItem from "./components/TodoItem";
 import TodoList from "./components/TodoList";
 
 const TodoApp = () => {
