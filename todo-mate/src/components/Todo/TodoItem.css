@@ -1,0 +1,31 @@
+.todoItemContainer {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+}
+.todoItemContainer.black {
+  background-color: black;
+  color: white;
+}
+.titleWrapper {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  font-weight: 500;
+}
+.todoTitle {
+  padding-left: 5px;
+}
+.todoContents {
+  padding-top: 10px;
+}
+.bottomWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.todoDate {
+  font-size: 9px;
+}
