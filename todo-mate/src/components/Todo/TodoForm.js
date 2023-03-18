@@ -1,14 +1,16 @@
 import React from "react";
+import './TodoForm.css';
 
-const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {  
+const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTodoItem({ ...todoItem, [name]: value });
   };
   return (
     <div className="todoFormContainer">
-      <form onSubmit={createTodoItem}>
+      <form className="todoForm" onSubmit={createTodoItem}>
         <input
+          className="formInput"
           type="text"
           name="title"
           value={todoItem.title || ""}
@@ -16,13 +18,14 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
           onChange={handleChange}
         />
         <input
+          className="formInput"
           type="text"
           name="contents"
           value={todoItem.contents || ""}
           placeholder="contents"
           onChange={handleChange}
         />
-        <input type="submit" value="Add✔️" />
+        <input className="formButton" type="submit" value="✅" />
       </form>
     </div>
   );
