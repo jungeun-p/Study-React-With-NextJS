@@ -57,10 +57,10 @@ const MainPage = () => {
   });
 
   // Create TodoItem
-  const createTodo = (e) => {
+  const createTodoItem = (e) => {
     e.preventDefault();
     let newTodoItem = {
-      id: todoData.length + 1,
+      id: createTodoId(),
       date: createTodayDate(),
       title: todoItem.title,
       contents: todoItem.contents,
@@ -74,6 +74,13 @@ const MainPage = () => {
   const createTodayDate = () => {
     const event = new Date();
     return event.toDateString();
+  };
+
+  // Create TodoItem Id
+  const createTodoId = () => {
+    const id = todoData.map((todo) => todo.id);
+    const maxId = Math.max(...id);
+    return maxId + 1;
   }
 
   return (
@@ -81,9 +88,12 @@ const MainPage = () => {
       <TodoForm
         todoItem={todoItem}
         setTodoItem={setTodoItem}
-        createTodo={createTodo}
+        createTodoItem={createTodoItem}
       />
-      <TodoList todoData={todoData} setTodoData={setTodoData} />
+      <TodoList
+        todoData={todoData}
+        setTodoData={setTodoData}
+      />
     </>
   );
 };

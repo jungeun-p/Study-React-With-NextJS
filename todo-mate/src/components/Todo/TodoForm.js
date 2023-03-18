@@ -1,13 +1,13 @@
 import React from "react";
 
-const TodoForm = ({ todoItem, setTodoItem, createTodo }) => {  
+const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTodoItem({ ...todoItem, [name]: value });
   };
   return (
     <div className="todoFormContainer">
-      <form onSubmit={createTodo}>
+      <form onSubmit={createTodoItem}>
         <input
           type="text"
           name="title"
