@@ -11,6 +11,13 @@ const TodoList = ({ todoData, setTodoData }) => {
     });
     setTodoData(newTodoData);
   }
+
+  // Delete TodoItem
+  const deleteTodoItem = (id) => {
+    let newTodoItem = todoData.filter((todo) => todo.id !== id);
+    setTodoData(newTodoItem);
+  };
+
   return (
     <div className="todoListContainer">
       {todoData.map((todo) => (
@@ -22,6 +29,7 @@ const TodoList = ({ todoData, setTodoData }) => {
           contents={todo.contents}
           completed={todo.completed}
           updateTodoCompleted={updateTodoCompleted}
+          deleteTodoItem={deleteTodoItem}
         />
       ))}
     </div>

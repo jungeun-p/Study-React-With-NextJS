@@ -8,6 +8,7 @@ const TodoItem = ({
   contents,
   completed,
   updateTodoCompleted,
+  deleteTodoItem,
 }) => {
   return (
     <div
@@ -29,7 +30,7 @@ const TodoItem = ({
           </div>
           <div className="todoButtonWrapper">
             <div>✏️</div>
-            <div>❎</div>
+            <div onClick={() => deleteTodoItem(id)}>❎</div>
           </div>
         </div>
         <div className="todoContents">{contents}</div>
