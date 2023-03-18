@@ -37,6 +37,9 @@
 .todoTitle {
   padding-left: 5px;
 }
+.todoTitle.finish{
+  text-decoration: line-through;
+}
 .todoContents {
   padding-top: 10px;
 }

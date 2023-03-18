@@ -25,7 +25,7 @@ const TodoItem = ({
               checked={completed}
               onChange={() => updateTodoCompleted(id)}
             />
-            <div className="todoTitle">{title}</div>
+            <div className={`todoTitle ${completed && "finish"}`}>{title}</div>
           </div>
           <div className="todoButtonWrapper">
             <div>✏️</div>
