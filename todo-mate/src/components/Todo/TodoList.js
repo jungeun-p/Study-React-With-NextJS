@@ -1,16 +1,16 @@
 import React from "react";
 import TodoItem from "./TodoItem";
-import './TodoList.css';
+import "./TodoList.css";
 
 const TodoList = ({ todoData, setTodoData }) => {
   // Update todoData completed
   const updateTodoCompleted = (id) => {
     let newTodoData = todoData.map((todo) => {
-      if(todo.id ===id) todo.completed = !todo.completed;
+      if (todo.id === id) todo.completed = !todo.completed;
       return todo;
     });
     setTodoData(newTodoData);
-  }
+  };
 
   // Delete TodoItem
   const deleteTodoItem = (id) => {
@@ -28,6 +28,8 @@ const TodoList = ({ todoData, setTodoData }) => {
           title={todo.title}
           contents={todo.contents}
           completed={todo.completed}
+          todoData={todoData}
+          setTodoData={setTodoData}
           updateTodoCompleted={updateTodoCompleted}
           deleteTodoItem={deleteTodoItem}
         />
