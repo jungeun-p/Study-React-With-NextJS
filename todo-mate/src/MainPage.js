@@ -70,7 +70,7 @@ const MainPage = () => {
       setTodoData((prev) => [...prev, newTodoItem]);
       setTodoItem("");
     } else {
-      alert('fill the form');
+      alert("fill the form");
       e.preventDefault();
     }
   };
