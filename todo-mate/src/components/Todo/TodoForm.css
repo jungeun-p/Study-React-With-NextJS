@@ -1,22 +1,38 @@
-
 .todoForm {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+.todoMoodWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.todoMood {
+  width: 10vw;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+}
+.todoMood.clicked {
+  background-color: red;
+}
+.todoMood:hover {
+  cursor: pointer;
 }
 .formInput {
-    border: none;
-    font-size: 15px;
-    padding: 10px;
-    margin: 5px 10px 10px 10px;
-    border-radius: 15px;
-    outline: none;
-    background-color: rgb(233, 233, 233);
+  border: none;
+  font-size: 15px;
+  padding: 10px;
+  margin: 5px 10px 10px 10px;
+  border-radius: 15px;
+  outline: none;
+  background-color: rgb(233, 233, 233);
 }
 .formButton {
-    background: none;
-    outline: none;
-    border: none;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 5px 0 5px 0;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px 0 5px 0;
 }
