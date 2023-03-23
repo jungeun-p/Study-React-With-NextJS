@@ -5,6 +5,7 @@ const TodoItem = ({
   id,
   date,
   title,
+  mood,
   contents,
   completed,
   todoData,
@@ -58,6 +59,7 @@ const TodoItem = ({
                   value={editTodoItem.title}
                   onChange={handleChange}
                 />
+                <div className="todoMood">{mood}</div>
               </div>
               <div className="todoButtonWrapper">
                 <div onClick={() => setEditing(!editing)}>🤚</div>
@@ -96,6 +98,7 @@ const TodoItem = ({
                 <div className={`todoTitle ${completed && "finish"}`}>
                   {title}
                 </div>
+                <div className="todoMood">{mood}</div>
               </div>
               <div className="todoButtonWrapper">
                 <div onClick={() => setEditing(!editing)}>✏️</div>

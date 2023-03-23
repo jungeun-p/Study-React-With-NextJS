@@ -26,6 +26,7 @@ const TodoList = ({ todoData, setTodoData }) => {
           date={todo.date}
           id={todo.id}
           title={todo.title}
+          mood={todo.mood}
           contents={todo.contents}
           completed={todo.completed}
           todoData={todoData}

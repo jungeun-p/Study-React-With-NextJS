@@ -10,6 +10,7 @@ const MainPage = () => {
       title: "First",
       contents: `There's nothing like threatening to go live with a bunch of Bill Murray pictures on a website to 'encourage' your clients to send you their content faster.`,
       completed: true,
+      mood: "🥺",
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ const MainPage = () => {
       title: "Second",
       contents: "SecondContents",
       completed: false,
+      mood: "🥺",
     },
     {
       id: 3,
@@ -24,6 +26,7 @@ const MainPage = () => {
       title: "Third",
       contents: `There's nothing like threatening to go live with a bunch of Bill Murray pictures on a website to 'encourage' your clients to send you their content faster.`,
       completed: false,
+      mood: "🥺",
     },
     {
       id: 4,
@@ -31,6 +34,7 @@ const MainPage = () => {
       title: "First",
       contents: "FirstContents",
       completed: true,
+      mood: "🥺",
     },
     {
       id: 5,
@@ -38,6 +42,7 @@ const MainPage = () => {
       title: "Second",
       contents: "SecondContents",
       completed: false,
+      mood: "🥺",
     },
     {
       id: 6,
@@ -45,15 +50,15 @@ const MainPage = () => {
       title: "Third",
       contents: "ThirdContents",
       completed: false,
+      mood: "🥺",
     },
   ];
   const [todoData, setTodoData] = useState(initialize);
   const [todoItem, setTodoItem] = useState({
-    id: "",
-    date: "",
     title: "",
     contents: "",
-    completed: false,
+    mood: "",
+
   });
 
   // Create TodoItem
@@ -66,6 +71,7 @@ const MainPage = () => {
         title: todoItem.title,
         contents: todoItem.contents,
         completed: false,
+        mood: todoItem.mood,
       };
       setTodoData((prev) => [...prev, newTodoItem]);
       setTodoItem("");
