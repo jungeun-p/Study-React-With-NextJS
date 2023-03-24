@@ -17,35 +17,42 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
             onClick={handleChange}
             type="button"
             name="mood"
-            value="🙂"
+            value="Soso"
           />
           <input
             className={`todoMood ${checkedMood}`}
             onClick={handleChange}
             type="button"
             name="mood"
-            value="🥰"
+            value="Happy"
           />
           <input
             className="todoMood"
             onClick={handleChange}
             type="button"
             name="mood"
-            value="☹️"
+            value="Bad"
           />
           <input
             className="todoMood"
             onClick={handleChange}
             type="button"
             name="mood"
-            value="😵‍💫"
+            value="Confuse"
           />
           <input
             className="todoMood"
             onClick={handleChange}
             type="button"
             name="mood"
-            value="🥲"
+            value="Sad"
+          />
+          <input
+            className="todoMood"
+            onClick={handleChange}
+            type="button"
+            name="mood"
+            value="Peaceful"
           />
         </div>
         <input
