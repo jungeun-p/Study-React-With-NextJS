@@ -1,7 +1,13 @@
 import React from "react";
+import Category from "./Category";
+import "./index.css";
 
 const Mypage = () => {
-  return <div>Mypage</div>;
+  return (
+    <div className="categoryContainer">
+      <Category />
+    </div>
+  );
 };
 
 export default Mypage;
