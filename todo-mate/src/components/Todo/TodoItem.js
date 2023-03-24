@@ -39,6 +39,24 @@ const TodoItem = ({
     setEditTodoItem({ ...editTodoItem, [name]: value });
   };
 
+  // create moodIcon
+  const createMoodIcon = (mood) => {
+    switch (mood) {
+      case "Soso":
+        return "🙂";
+      case "Happy":
+        return "🥰";
+      case "Bad":
+        return "☹️";
+      case "Confuse":
+        return "😵‍💫";
+      case "Sad":
+        return "🥲";
+      case "Peaceful":
+        return "😌";
+    }
+  };
+
   return (
     <form
       className={`todoItemContainer 
@@ -59,7 +77,7 @@ const TodoItem = ({
                   value={editTodoItem.title}
                   onChange={handleChange}
                 />
-                <div className="todoMood">{mood}</div>
+                {/* <div className="todoMood">{createMoodIcon(mood)}</div> */}
               </div>
               <div className="todoButtonWrapper">
                 <div onClick={() => setEditing(!editing)}>🤚</div>
@@ -98,7 +116,7 @@ const TodoItem = ({
                 <div className={`todoTitle ${completed && "finish"}`}>
                   {title}
                 </div>
-                <div className="todoMood">{mood}</div>
+                <div className="todoMood">{createMoodIcon(mood)}</div>
               </div>
               <div className="todoButtonWrapper">
                 <div onClick={() => setEditing(!editing)}>✏️</div>
