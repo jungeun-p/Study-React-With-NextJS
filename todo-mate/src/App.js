@@ -4,6 +4,7 @@ import MainPage from "./MainPage";
 import Mypage from "./components/Mypage";
 import Header from "./components/Navigation/Header";
 import "./App.css";
+import MoodPage from "./components/MoodPage";
 
 function App() {
   const Layout = () => {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="mypage" element={<Mypage />} />
+        <Route path=":moodName" element={<MoodPage />} />
       </Route>
     </Routes>
   );
