@@ -1,0 +1,28 @@
+.moodCategories {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  row-gap: 10px;
+}
+.moodIndex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(233, 233, 233);
+  width: 80px;
+  border-radius: 15px;
+  cursor: pointer;
+  padding: 5px 0;
+}
+.moodIcon {
+    font-size: 20px;
+}
+.moodTitle {
+  font-size: 10px;
+  font-weight: 700;
+}
+.moodValue {
+  font-size: 5px;
+}
