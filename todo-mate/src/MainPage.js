@@ -1,59 +1,10 @@
 import React, { useState } from "react";
 import TodoForm from "./components/Todo/TodoForm";
 import TodoList from "./components/Todo/TodoList";
+import todoDataBase from "./assets/data";
 
 const MainPage = () => {
-  const initialize = [
-    {
-      id: 1,
-      date: "23-01-11",
-      title: "First",
-      contents: `There's nothing like threatening to go live with a bunch of Bill Murray pictures on a website to 'encourage' your clients to send you their content faster.`,
-      completed: true,
-      mood: "🥺",
-    },
-    {
-      id: 2,
-      date: "23-01-11",
-      title: "Second",
-      contents: "SecondContents",
-      completed: false,
-      mood: "🥺",
-    },
-    {
-      id: 3,
-      date: "23-01-11",
-      title: "Third",
-      contents: `There's nothing like threatening to go live with a bunch of Bill Murray pictures on a website to 'encourage' your clients to send you their content faster.`,
-      completed: false,
-      mood: "🥺",
-    },
-    {
-      id: 4,
-      date: "23-01-11",
-      title: "First",
-      contents: "FirstContents",
-      completed: true,
-      mood: "🥺",
-    },
-    {
-      id: 5,
-      date: "23-01-11",
-      title: "Second",
-      contents: "SecondContents",
-      completed: false,
-      mood: "🥺",
-    },
-    {
-      id: 6,
-      date: "23-01-11",
-      title: "Third",
-      contents: "ThirdContents",
-      completed: false,
-      mood: "🥺",
-    },
-  ];
-  const [todoData, setTodoData] = useState(initialize);
+  const [todoData, setTodoData] = useState(todoDataBase);
   const [todoItem, setTodoItem] = useState({
     title: "",
     contents: "",
