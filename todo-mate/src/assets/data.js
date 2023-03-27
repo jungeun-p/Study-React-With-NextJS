@@ -65,4 +65,10 @@ const todoDataBase = [
   },
 ];
 
-export default todoDataBase;
+export const initialTodoData = localStorage.getItem("todoData")
+  ? JSON.parse(localStorage.getItem("todoData"))
+  : [];
+
+export const todoDataLocalStorage = (newTodoData) => {
+  localStorage.setItem("todoData", JSON.stringify(newTodoData));
+};
