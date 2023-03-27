@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { initialTodoData, todoDataLocalStorage } from "./assets/data";
 import TodoForm from "./components/Todo/TodoForm";
 import TodoList from "./components/Todo/TodoList";
-import todoDataBase from "./assets/data";
 
 const MainPage = () => {
-  const [todoData, setTodoData] = useState(todoDataBase);
+  const [todoData, setTodoData] = useState(initialTodoData);
   const [todoItem, setTodoItem] = useState({
     title: "",
     contents: "",
     mood: "",
-
   });
 
   // Create TodoItem
@@ -25,7 +24,9 @@ const MainPage = () => {
         mood: todoItem.mood,
       };
       setTodoData((prev) => [...prev, newTodoItem]);
+      todoDataLocalStorage([...todoData, newTodoItem]);
       setTodoItem("");
+      window.location.reload();
     } else {
       alert("fill the form");
       e.preventDefault();

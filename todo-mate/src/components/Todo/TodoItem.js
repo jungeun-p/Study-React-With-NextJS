@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { todoDataLocalStorage } from "../../assets/data";
 import "./TodoItem.css";
 
 const TodoItem = ({
@@ -30,6 +31,7 @@ const TodoItem = ({
       return todo;
     });
     setTodoData(newTodoData);
+    todoDataLocalStorage(newTodoData);
     setEditing(false);
   };
 
@@ -47,7 +49,7 @@ const TodoItem = ({
       case "Happy":
         return "🥰";
       case "Bad":
-        return "☹️";
+        return "😡";
       case "Confuse":
         return "😵‍💫";
       case "Sad":
