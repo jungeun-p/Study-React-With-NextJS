@@ -1,41 +1,16 @@
 import React, { useState } from "react";
-import { initialTodoData } from "../../assets/data";
+import { initialMoodData, initialTodoData } from "../../assets/data";
 import "./Category.css";
 import CategoryIndex from "./CategoryIndex";
 
 const Category = () => {
-  const [mood, setMood] = useState([
-    {
-      moodName: "Soso",
-      moodIcon: "🙂",
-    },
-    {
-      moodName: "Happy",
-      moodIcon: "🥰",
-    },
-    {
-      moodName: "Bad",
-      moodIcon: "😡",
-    },
-    {
-      moodName: "Confuse",
-      moodIcon: "😵‍💫",
-    },
-    {
-      moodName: "Sad",
-      moodIcon: "🥲",
-    },
-    {
-      moodName: "Peaceful",
-      moodIcon: "😌",
-    },
-  ]);
+  const [mood, setMood] = useState(initialMoodData);
 
   // Create moodValue
-  const moodValueNum = (moodName) => {
+  const moodValueNum = (moodValue) => {
     const todoMood = initialTodoData
       .map((todo) => todo.mood)
-      .filter((mood) => mood === moodName).length;
+      .filter((mood) => mood === moodValue).length;
     return todoMood;
   };
 
@@ -43,10 +18,10 @@ const Category = () => {
     <div className="moodCategories">
       {mood.map((item) => (
         <CategoryIndex
-          key={item.moodName}
-          moodName={item.moodName}
-          moodIcon={item.moodIcon}
-          moodValue={moodValueNum(item.moodName)}
+          key={item.moodValue}
+          moodValue={item.moodValue}
+          moodEmoji={item.moodEmoji}
+          moodNum={moodValueNum(item.moodValue)}
         />
       ))}
     </div>
