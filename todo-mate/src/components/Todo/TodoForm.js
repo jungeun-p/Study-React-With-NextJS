@@ -6,54 +6,60 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTodoItem({ ...todoItem, [name]: value });
+    console.log(value==="Soso");
+    // 
   };
 
   return (
     <div className="todoFormContainer">
       <form className="todoForm" onSubmit={createTodoItem}>
         <div className="formInput todoMoodWrapper">
-          <input
+          <button
             className={`todoMood ${checkedMood}`}
             onClick={handleChange}
             type="button"
             name="mood"
             value="Soso"
-          />
-          <input
+          >
+            🙂
+          </button>
+          <button
             className={`todoMood ${checkedMood}`}
             onClick={handleChange}
             type="button"
             name="mood"
             value="Happy"
-          />
-          <input
-            className="todoMood"
+          >
+            🥰
+          </button>
+          <button
+            className={`todoMood ${checkedMood}`}
             onClick={handleChange}
             type="button"
             name="mood"
             value="Bad"
-          />
-          <input
-            className="todoMood"
+          >😡</button>
+          <button
+            className={`todoMood ${checkedMood}`}
             onClick={handleChange}
             type="button"
             name="mood"
             value="Confuse"
-          />
-          <input
-            className="todoMood"
+          >😵‍💫</button>
+          <button
+            className={`todoMood ${checkedMood}`}
             onClick={handleChange}
             type="button"
             name="mood"
             value="Sad"
-          />
-          <input
-            className="todoMood"
+          >🥲</button>
+          <button
+            className={`todoMood ${checkedMood}`}
             onClick={handleChange}
             type="button"
             name="mood"
             value="Peaceful"
-          />
+          >😌</button>
         </div>
         <input
           className="formInput"

@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import todoDataBase from "../../assets/data";
+import React, { useState } from "react";
+import { initialTodoData } from "../../assets/data";
 import "./Category.css";
 import CategoryIndex from "./CategoryIndex";
 
@@ -15,7 +15,7 @@ const Category = () => {
     },
     {
       moodName: "Bad",
-      moodIcon: "☹️",
+      moodIcon: "😡",
     },
     {
       moodName: "Confuse",
@@ -32,12 +32,12 @@ const Category = () => {
   ]);
 
   // Create moodValue
-  const moodValueNum = useCallback((moodName) => {
-    const todoMood = todoDataBase
+  const moodValueNum = (moodName) => {
+    const todoMood = initialTodoData
       .map((todo) => todo.mood)
       .filter((mood) => mood === moodName).length;
     return todoMood;
-  }, []);
+  };
 
   return (
     <div className="moodCategories">
