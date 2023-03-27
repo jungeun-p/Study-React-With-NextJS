@@ -1,65 +1,38 @@
 import React, { useState } from "react";
+import { initialMoodData } from "../../assets/data";
+import MoodSelect from "./MoodSelect";
 import "./TodoForm.css";
 
 const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
-  const [checkedMood, setCheckedMood] = useState(false);
+  const [mood, setMood] = useState(initialMoodData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTodoItem({ ...todoItem, [name]: value });
-    console.log(value==="Soso");
-    // 
+    if (name === "mood") {
+      // checkedMood
+      const newMoodData = mood.map((item) => {
+        item.moodValue === value
+          ? (item.checked = true)
+          : (item.checked = false);
+        return item;
+      });
+      setMood(newMoodData);
+    }
   };
 
   return (
     <div className="todoFormContainer">
       <form className="todoForm" onSubmit={createTodoItem}>
         <div className="formInput todoMoodWrapper">
-          <button
-            className={`todoMood ${checkedMood}`}
-            onClick={handleChange}
-            type="button"
-            name="mood"
-            value="Soso"
-          >
-            🙂
-          </button>
-          <button
-            className={`todoMood ${checkedMood}`}
-            onClick={handleChange}
-            type="button"
-            name="mood"
-            value="Happy"
-          >
-            🥰
-          </button>
-          <button
-            className={`todoMood ${checkedMood}`}
-            onClick={handleChange}
-            type="button"
-            name="mood"
-            value="Bad"
-          >😡</button>
-          <button
-            className={`todoMood ${checkedMood}`}
-            onClick={handleChange}
-            type="button"
-            name="mood"
-            value="Confuse"
-          >😵‍💫</button>
-          <button
-            className={`todoMood ${checkedMood}`}
-            onClick={handleChange}
-            type="button"
-            name="mood"
-            value="Sad"
-          >🥲</button>
-          <button
-            className={`todoMood ${checkedMood}`}
-            onClick={handleChange}
-            type="button"
-            name="mood"
-            value="Peaceful"
-          >😌</button>
+          {mood.map((item) => (
+            <MoodSelect
+              key={item.id}
+              checked={item.checked}
+              value={item.moodValue}
+              emoji={item.moodEmoji}
+              handleChange={handleChange}
+            />
+          ))}
         </div>
         <input
           className="formInput"
@@ -77,7 +50,7 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
           placeholder="contents"
           onChange={handleChange}
         />
-        <input className="formButton" type="submit" value="✅" />
+        <input className="formButton" type="submit" value="Add" />
       </form>
     </div>
   );
