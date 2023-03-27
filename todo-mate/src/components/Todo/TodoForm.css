@@ -16,8 +16,8 @@
   border-radius: 10px;
   font-size: 18px;
 }
-.todoMood.clicked {
-  background-color: red;
+.todoMood.checked {
+  background-color: black;
 }
 .todoMood:hover {
   cursor: pointer;
@@ -32,10 +32,13 @@
   background-color: rgb(233, 233, 233);
 }
 .formButton {
-  background: none;
+  background-color: black;
+  color: white;
   outline: none;
   border: none;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
-  margin: 5px 0 5px 0;
+  margin: 5px 0 10px 0;
+  padding: 12px 0;
+  border-radius: 10px;
 }
