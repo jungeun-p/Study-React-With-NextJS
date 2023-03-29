@@ -15,4 +15,4 @@ const MoodSelect = ({ checked, value, emoji, handleChange }) => {
   );
 };
 
-export default MoodSelect;
+export default React.memo(MoodSelect);

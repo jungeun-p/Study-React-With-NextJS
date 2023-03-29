@@ -60,13 +60,13 @@ const TodoItem = ({
   };
 
   return (
-    <form
-      className={`todoItemContainer 
-      ${id % 2 === 1 ? "black" : "white"} 
-      ${completed && "finished"}`}
-    >
+    <>
       {editing ? (
-        <>
+        <form
+          className={`todoItemContainer 
+          ${id % 2 === 1 ? "black" : "white"} 
+          ${completed && "finished"}`}
+        >
           <div className="topWrapper">
             <div className="titleWrapper">
               <div className="todoTitleWrapper">
@@ -102,9 +102,13 @@ const TodoItem = ({
           <div className="bottomWrapper">
             <div className="todoDate">{date}</div>
           </div>
-        </>
+        </form>
       ) : (
-        <>
+        <div
+          className={`todoItemContainer 
+          ${id % 2 === 1 ? "black" : "white"} 
+          ${completed && "finished"}`}
+        >
           <div className="topWrapper">
             <div className="titleWrapper">
               <div className="todoTitleWrapper">
@@ -130,9 +134,9 @@ const TodoItem = ({
           <div className="bottomWrapper">
             <div className="todoDate">{date}</div>
           </div>
-        </>
+        </div>
       )}
-    </form>
+    </>
   );
 };
 

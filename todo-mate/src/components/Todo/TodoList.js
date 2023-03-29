@@ -43,4 +43,4 @@ const TodoList = ({ todoData, setTodoData }) => {
   );
 };
 
-export default TodoList;
+export default React.memo(TodoList);

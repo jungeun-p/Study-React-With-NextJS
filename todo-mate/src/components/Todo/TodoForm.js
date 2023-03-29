@@ -56,4 +56,4 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
   );
 };
 
-export default TodoForm;
+export default React.memo(TodoForm);
