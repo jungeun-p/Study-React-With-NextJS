@@ -13,7 +13,8 @@ const MainPage = () => {
 
   // Create TodoItem
   const createTodoItem = (e) => {
-    if ((todoItem.title && todoItem.contents) !== "") {
+    const { title, contents, mood } = todoItem;
+    if ((title && contents && mood) !== "") {
       e.preventDefault();
       let newTodoItem = {
         id: createTodoId(),
