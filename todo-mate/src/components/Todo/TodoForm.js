@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { initialMoodData } from "../../assets/data";
 import MoodSelect from "./MoodSelect";
 import "./TodoForm.css";
 
 const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
   const [mood, setMood] = useState(initialMoodData);
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setTodoItem({ ...todoItem, [name]: value });
     if (name === "mood") {
@@ -18,7 +18,7 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
       });
       setMood(newMoodData);
     }
-  };
+  }, [todoItem, mood]);
 
   return (
     <div className="todoFormContainer">
