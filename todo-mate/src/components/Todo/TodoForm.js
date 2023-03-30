@@ -1,27 +1,33 @@
 import React, { useCallback, useState } from "react";
 import { initialMoodData } from "../../assets/data";
+import MoodFormation from "./MoodFormation";
 import MoodSelect from "./MoodSelect";
 import "./TodoForm.css";
 
 const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
   const [mood, setMood] = useState(initialMoodData);
-  const handleChange = useCallback((e) => {
-    const { name, value } = e.target;
-    setTodoItem({ ...todoItem, [name]: value });
-    if (name === "mood") {
-      // checkedMood
-      const newMoodData = mood.map((item) => {
-        item.moodValue === value
-          ? (item.checked = true)
-          : (item.checked = false);
-        return item;
-      });
-      setMood(newMoodData);
-    }
-  }, [todoItem, mood]);
+  const [moodEdit, setMoodEdit] = useState(false);
+  const handleChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setTodoItem({ ...todoItem, [name]: value });
+      if (name === "mood") {
+        // checkedMood
+        const newMoodData = mood.map((item) => {
+          item.moodValue === value
+            ? (item.checked = true)
+            : (item.checked = false);
+          return item;
+        });
+        setMood(newMoodData);
+      }
+    },
+    [todoItem, mood]
+  );
 
   return (
     <div className="todoFormContainer">
+      {moodEdit && <MoodFormation mood={mood} setMood={setMood} />}
       <form className="todoForm" onSubmit={createTodoItem}>
         <div className="formInput todoMoodWrapper">
           {mood.map((item) => (
@@ -33,6 +39,9 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
               handleChange={handleChange}
             />
           ))}
+          <div className="settingMood" onClick={() => setMoodEdit(!moodEdit)}>
+            ⚙️
+          </div>
         </div>
         <input
           className="formInput"
