@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { initialTodoData, todoDataLocalStorage } from "./assets/data";
+import { dataLocalStorage, initialTodoData } from "./assets/data";
 import TodoForm from "./components/Todo/TodoForm";
 import TodoList from "./components/Todo/TodoList";
 
@@ -25,7 +25,7 @@ const MainPage = () => {
         mood: todoItem.mood,
       };
       setTodoData((prev) => [...prev, newTodoItem]);
-      todoDataLocalStorage([...todoData, newTodoItem]);
+      dataLocalStorage("todoData", [...todoData, newTodoItem]);
       setTodoItem("");
       window.location.reload();
     } else {

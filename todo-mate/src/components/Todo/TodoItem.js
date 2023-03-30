@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { todoDataLocalStorage } from "../../assets/data";
+import { dataLocalStorage } from "../../assets/data";
 import "./TodoItem.css";
 
 const TodoItem = ({
@@ -31,7 +31,7 @@ const TodoItem = ({
       return todo;
     });
     setTodoData(newTodoData);
-    todoDataLocalStorage(newTodoData);
+    dataLocalStorage("todoData", newTodoData);
     setEditing(false);
   };
 
@@ -122,7 +122,7 @@ const TodoItem = ({
                 <div className={`todoTitle ${completed && "finish"}`}>
                   {title}
                 </div>
-                <div className="todoMood">{createMoodIcon(mood)}</div>
+                <div className="todoMood">({mood})</div>
               </div>
               <div className="todoButtonWrapper">
                 <div onClick={() => setEditing(!editing)}>✏️</div>

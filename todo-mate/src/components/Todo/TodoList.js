@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { todoDataLocalStorage } from "../../assets/data";
+import { dataLocalStorage } from "../../assets/data";
 import TodoItem from "./TodoItem";
 import "./TodoList.css";
 
@@ -11,14 +11,13 @@ const TodoList = ({ todoData, setTodoData }) => {
       return todo;
     });
     setTodoData(newTodoData);
-    todoDataLocalStorage(newTodoData);
+    dataLocalStorage("todoData", newTodoData);
   }, [todoData]);
 
   // Delete TodoItem
   const deleteTodoItem = useCallback((id) => {
     let newTodoItem = todoData.filter((todo) => todo.id !== id);
-    setTodoData(newTodoItem);
-    todoDataLocalStorage(newTodoItem);
+    dataLocalStorage("todoData", newTodoItem);
     window.location.reload();
   }, [todoData]);
 
