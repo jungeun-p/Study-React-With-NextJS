@@ -1,15 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { dataLocalStorage, initialTodoData } from "./assets/data";
+import React, { useState, useEffect } from "react";
+import requests from "./api/request";
+import axios from "./api/axios";
 import TodoForm from "./components/Todo/TodoForm";
 import TodoList from "./components/Todo/TodoList";
 
 const MainPage = () => {
-  const [todoData, setTodoData] = useState(initialTodoData);
+  const [todoData, setTodoData] = useState([]);
   const [todoItem, setTodoItem] = useState({
     title: "",
     contents: "",
     mood: "",
   });
+
+  const fetchTodoData = async () => {
+    const result = await axios.get(requests.fetchTodoList);
+    const { items } = result.data;
+    setTodoData(items);
+  };
+
+  useEffect(() => {
+    fetchTodoData();
+  }, []);
 
   // Create TodoItem
   const createTodoItem = (e) => {
@@ -17,7 +28,7 @@ const MainPage = () => {
     if ((title && contents && mood) !== "") {
       e.preventDefault();
       let newTodoItem = {
-        id: createTodoId(),
+        todoId: createTodoId(),
         date: createTodayDate(),
         title: todoItem.title,
         contents: todoItem.contents,
@@ -25,12 +36,9 @@ const MainPage = () => {
         mood: todoItem.mood,
       };
       setTodoData((prev) => [...prev, newTodoItem]);
-      dataLocalStorage("todoData", [...todoData, newTodoItem]);
       setTodoItem("");
-      window.location.reload();
     } else {
       alert("fill the form");
-      e.preventDefault();
     }
   };
 
