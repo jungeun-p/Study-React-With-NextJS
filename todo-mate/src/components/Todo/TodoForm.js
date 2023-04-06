@@ -1,12 +1,25 @@
-import React, { useCallback, useState } from "react";
-import { initialMoodData } from "../../assets/data";
+import React, { useCallback, useEffect, useState } from "react";
+import requests from "../../api/request";
+import axios from "../../api/axios";
 import MoodFormation from "./MoodFormation";
 import MoodSelect from "./MoodSelect";
 import "./TodoForm.css";
 
 const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
-  const [mood, setMood] = useState(initialMoodData);
+  const [mood, setMood] = useState([]);
   const [moodEdit, setMoodEdit] = useState(false);
+
+  const fetchMoodData = async() => {
+    const result = await axios.get(requests.fetchMoodList);
+    const { items } = result.data;
+    setMood(items);
+  }
+
+  useEffect(() => {
+    fetchMoodData();
+  }, [])
+
+  console.log(todoItem);
   const handleChange = useCallback(
     (e) => {
       const { name, value } = e.target;

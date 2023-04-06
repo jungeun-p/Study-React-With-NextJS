@@ -1,5 +1,6 @@
 const requests = {
-    fetchTodoList: 'todos/records'
+    fetchTodoList: 'todos/records',
+    fetchMoodList: 'moods/records'
 }
 
 export default requests;
