@@ -19,7 +19,6 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
     fetchMoodData();
   }, [])
 
-  console.log(todoItem);
   const handleChange = useCallback(
     (e) => {
       const { name, value } = e.target;

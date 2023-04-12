@@ -4,6 +4,7 @@ import "./TodoItem.css";
 
 const TodoItem = ({
   id,
+  todoId,
   date,
   title,
   mood,
@@ -64,7 +65,7 @@ const TodoItem = ({
       {editing ? (
         <form
           className={`todoItemContainer 
-          ${id % 2 === 1 ? "black" : "white"} 
+          ${todoId % 2 === 1 ? "black" : "white"} 
           ${completed && "finished"}`}
         >
           <div className="topWrapper">
@@ -106,7 +107,7 @@ const TodoItem = ({
       ) : (
         <div
           className={`todoItemContainer 
-          ${id % 2 === 1 ? "black" : "white"} 
+          ${todoId % 2 === 1 ? "black" : "white"} 
           ${completed && "finished"}`}
         >
           <div className="topWrapper">
