@@ -21,21 +21,20 @@ const MainPage = () => {
   useEffect(() => {
     fetchTodoData();
   }, []);
-
   // Create TodoItem
-  const createTodoItem = (e) => {
+  const createTodoItem = async (e) => {
     const { title, contents, mood } = todoItem;
     if ((title && contents && mood) !== "") {
       e.preventDefault();
       let newTodoItem = {
-        todoId: createTodoId(),
         date: createTodayDate(),
+        todoId: createTodoId(),
         title: todoItem.title,
         contents: todoItem.contents,
         completed: false,
         mood: todoItem.mood,
       };
-      setTodoData((prev) => [...prev, newTodoItem]);
+      const result = await axios.post(requests.createTodoItem, newTodoItem);
       setTodoItem("");
     } else {
       alert("fill the form");
@@ -50,7 +49,7 @@ const MainPage = () => {
 
   // Create TodoItem Id
   const createTodoId = () => {
-    const id = todoData.map((todo) => todo.id);
+    const id = todoData.map((todo) => todo.todoId);
     const maxId = Math.max(...id);
     return maxId + 1;
   };
