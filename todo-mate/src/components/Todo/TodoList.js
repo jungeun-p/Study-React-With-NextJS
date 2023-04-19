@@ -28,6 +28,7 @@ const TodoList = ({ todoData, setTodoData }) => {
   //   },
   //   [todoData]
   // );
+  
   const deleteTodoItem = async (id) => {
     return await axios.delete(`${requests.deleteTodoItem}/${id}`);
   };

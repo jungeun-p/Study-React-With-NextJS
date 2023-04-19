@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "../../api/axios";
+import requests from "../../api/request";
 import { dataLocalStorage } from "../../assets/data";
 import "./TodoItem.css";
 
@@ -22,7 +24,21 @@ const TodoItem = ({
   });
 
   // Update todoData title & contents
-  const updateTodoItem = (e) => {
+  // const updateTodoItem = (e) => {
+  //   e.preventDefault();
+  //   const newTodoData = todoData.map((todo) => {
+  //     if (todo.id === id) {
+  //       todo.title = editTodoItem.title;
+  //       todo.contents = editTodoItem.contents;
+  //     }
+  //     return todo;
+  //   });
+  //   setTodoData(newTodoData);
+  //   dataLocalStorage("todoData", newTodoData);
+  //   setEditing(false);
+  // };
+
+  const updateTodoItem = async (e) => {
     e.preventDefault();
     const newTodoData = todoData.map((todo) => {
       if (todo.id === id) {
@@ -31,8 +47,12 @@ const TodoItem = ({
       }
       return todo;
     });
-    setTodoData(newTodoData);
-    dataLocalStorage("todoData", newTodoData);
+    const result = await axios.update(
+      `${requests.updateTodoItem}/${id}`,
+      newTodoData
+    );
+    console.log(result);
+
     setEditing(false);
   };
 
