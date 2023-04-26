@@ -38,21 +38,17 @@ const TodoItem = ({
   //   setEditing(false);
   // };
 
-  const updateTodoItem = async (e) => {
-    e.preventDefault();
-    const newTodoData = todoData.map((todo) => {
-      if (todo.id === id) {
-        todo.title = editTodoItem.title;
-        todo.contents = editTodoItem.contents;
-      }
-      return todo;
+  const updateTodoItem = async (id) => {
+    let selectedTodoItem = todoData.filter((todo) => todo.id === id);
+    const result = await axios.patch(`${requests.updateTodoItem}/${id}`, {
+      date: selectedTodoItem.date,
+      todoId: selectedTodoItem.id,
+      title: editTodoItem.title,
+      contents: editTodoItem.contents,
+      completed: selectedTodoItem.completed,
+      mood: selectedTodoItem.mood,
     });
-    const result = await axios.update(
-      `${requests.updateTodoItem}/${id}`,
-      newTodoData
-    );
     console.log(result);
-
     setEditing(false);
   };
 
@@ -83,7 +79,7 @@ const TodoItem = ({
   return (
     <>
       {editing ? (
-        <form
+        <div
           className={`todoItemContainer 
           ${todoId % 2 === 1 ? "black" : "white"} 
           ${completed && "finished"}`}
@@ -104,12 +100,9 @@ const TodoItem = ({
               </div>
               <div className="todoButtonWrapper">
                 <div onClick={() => setEditing(!editing)}>🤚</div>
-                <input
-                  className="update"
-                  type="submit"
-                  onClick={updateTodoItem}
-                  value="✅"
-                />
+                <div className="update" onClick={() => updateTodoItem(id)}>
+                  ✅
+                </div>
               </div>
             </div>
             <textarea
@@ -123,7 +116,7 @@ const TodoItem = ({
           <div className="bottomWrapper">
             <div className="todoDate">{date}</div>
           </div>
-        </form>
+        </div>
       ) : (
         <div
           className={`todoItemContainer 
