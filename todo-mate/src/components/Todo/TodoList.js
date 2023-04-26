@@ -32,6 +32,7 @@ const TodoList = ({ todoData, setTodoData }) => {
   const deleteTodoItem = async (id) => {
     return await axios.delete(`${requests.deleteTodoItem}/${id}`);
   };
+
   return (
     <div className="todoListContainer">
       {todoData.map((todo) => (

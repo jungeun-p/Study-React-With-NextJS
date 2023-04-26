@@ -21,6 +21,7 @@ const MainPage = () => {
   useEffect(() => {
     fetchTodoData();
   }, []);
+  
   // Create TodoItem
   const createTodoItem = async (e) => {
     const { title, contents, mood } = todoItem;
