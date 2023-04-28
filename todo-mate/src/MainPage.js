@@ -4,12 +4,16 @@ import axios from "./api/axios";
 import TodoForm from "./components/Todo/TodoForm";
 import TodoList from "./components/Todo/TodoList";
 
-const MainPage = () => {
+const MainPage = React.memo(() => {
   const [todoData, setTodoData] = useState([]);
   const [todoItem, setTodoItem] = useState({
     title: "",
     contents: "",
     mood: "",
+  });
+  const [fetchStatus, setFetchStatus] = useState({
+    success: null,
+    fail: null,
   });
 
   const fetchTodoData = async () => {
@@ -20,8 +24,8 @@ const MainPage = () => {
 
   useEffect(() => {
     fetchTodoData();
-  }, []);
-  
+  }, [fetchStatus.success]);
+
   // Create TodoItem
   const createTodoItem = async (e) => {
     const { title, contents, mood } = todoItem;
@@ -37,6 +41,7 @@ const MainPage = () => {
       };
       const result = await axios.post(requests.createTodoItem, newTodoItem);
       setTodoItem("");
+      setFetchStatus({ ...fetchStatus, success: result.status });
     } else {
       alert("fill the form");
     }
@@ -65,6 +70,6 @@ const MainPage = () => {
       <TodoList todoData={todoData} setTodoData={setTodoData} />
     </>
   );
-};
+});
 
 export default MainPage;
