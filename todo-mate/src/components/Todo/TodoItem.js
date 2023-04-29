@@ -39,16 +39,15 @@ const TodoItem = ({
   // };
 
   const updateTodoItem = async (id) => {
-    let selectedTodoItem = todoData.filter((todo) => todo.id === id);
-    const result = await axios.patch(`${requests.updateTodoItem}/${id}`, {
-      date: selectedTodoItem.date,
-      todoId: selectedTodoItem.id,
+    let selectedTodoItem = todoData.find((todo) => {
+      if (todo.id === id) return todo;
+    });
+    const data = {
+      ...selectedTodoItem,
       title: editTodoItem.title,
       contents: editTodoItem.contents,
-      completed: selectedTodoItem.completed,
-      mood: selectedTodoItem.mood,
-    });
-    console.log(result);
+    };
+    const result = await axios.patch(`${requests.updateTodoItem}/${id}`, data);
     setEditing(false);
   };
 

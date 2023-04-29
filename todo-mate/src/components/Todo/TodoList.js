@@ -7,17 +7,28 @@ import "./TodoList.css";
 
 const TodoList = ({ todoData, setTodoData }) => {
   // Update todoData completed
-  const updateTodoCompleted = useCallback(
-    (id) => {
-      let newTodoData = todoData.map((todo) => {
-        if (todo.id === id) todo.completed = !todo.completed;
-        return todo;
-      });
-      setTodoData(newTodoData);
-      dataLocalStorage("todoData", newTodoData);
-    },
-    [todoData]
-  );
+  // const updateTodoCompleted = useCallback(
+  //   (id) => {
+  //     let newTodoData = todoData.map((todo) => {
+  //       if (todo.id === id) todo.completed = !todo.completed;
+  //       return todo;
+  //     });
+  //     setTodoData(newTodoData);
+  //     dataLocalStorage("todoData", newTodoData);
+  //   },
+  //   [todoData]
+  // );
+
+  const updateTodoCompleted = async (id) => {
+    let selectedTodoItem = todoData.find((todo) => {
+      if (todo.id === id) return todo;
+    });
+    const data = {
+      ...selectedTodoItem,
+      completed: !selectedTodoItem.completed,
+    };
+    const result = await axios.patch(`${requests.updateTodoItem}/${id}`, data);
+  };
 
   // Delete TodoItem
   // const deleteTodoItem = useCallback(
@@ -28,7 +39,7 @@ const TodoList = ({ todoData, setTodoData }) => {
   //   },
   //   [todoData]
   // );
-  
+
   const deleteTodoItem = async (id) => {
     return await axios.delete(`${requests.deleteTodoItem}/${id}`);
   };
