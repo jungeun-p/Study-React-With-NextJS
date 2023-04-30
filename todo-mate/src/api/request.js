@@ -1,9 +1,6 @@
 const requests = {
-    fetchTodoList: 'todos/records',
-    fetchMoodList: 'moods/records',
-    createTodoItem: 'todos/records',
-    deleteTodoItem: 'todos/records',
-    updateTodoItem: 'todos/records',
+    fetchTodo: 'todos/records',
+    fetchMood: 'moods/records'
 }
 
 export default requests;

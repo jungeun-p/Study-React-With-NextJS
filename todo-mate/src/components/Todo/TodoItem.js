@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "../../api/axios";
 import requests from "../../api/request";
-import { dataLocalStorage } from "../../assets/data";
 import "./TodoItem.css";
 
 const TodoItem = ({
@@ -48,7 +47,7 @@ const TodoItem = ({
       title: editTodoItem.title,
       contents: editTodoItem.contents,
     };
-    const result = await axios.patch(`${requests.updateTodoItem}/${id}`, data);
+    const result = await axios.patch(`${requests.fetchTodo}/${id}`, data);
     setEditing(false);
     setFetchStatus({ ...fetchStatus, success: result.status });
   };

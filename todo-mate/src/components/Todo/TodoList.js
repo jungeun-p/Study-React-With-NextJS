@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import axios from "../../api/axios";
 import requests from "../../api/request";
-import { dataLocalStorage } from "../../assets/data";
 import TodoItem from "./TodoItem";
 import "./TodoList.css";
 
@@ -27,7 +26,7 @@ const TodoList = ({ todoData, fetchStatus, setFetchStatus }) => {
       ...selectedTodoItem,
       completed: !selectedTodoItem.completed,
     };
-    const result = await axios.patch(`${requests.updateTodoItem}/${id}`, data);
+    const result = await axios.patch(`${requests.fetchTodo}/${id}`, data);
     setFetchStatus({ ...fetchStatus, success: result.status });
   };
 
@@ -42,7 +41,7 @@ const TodoList = ({ todoData, fetchStatus, setFetchStatus }) => {
   // );
 
   const deleteTodoItem = async (id) => {
-    const result = await axios.delete(`${requests.deleteTodoItem}/${id}`);
+    const result = await axios.delete(`${requests.fetchTodo}/${id}`);
     setFetchStatus({ ...fetchStatus, success: result.status });
   };
 

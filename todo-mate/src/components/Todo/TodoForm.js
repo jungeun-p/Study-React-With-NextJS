@@ -10,7 +10,7 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
   const [moodEdit, setMoodEdit] = useState(false);
 
   const fetchMoodData = async() => {
-    const result = await axios.get(requests.fetchMoodList);
+    const result = await axios.get(requests.fetchMood);
     const { items } = result.data;
     setMood(items);
   }

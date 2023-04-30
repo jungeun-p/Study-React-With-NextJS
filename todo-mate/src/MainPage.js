@@ -17,7 +17,7 @@ const MainPage = React.memo(() => {
   });
 
   const fetchTodoData = async () => {
-    const result = await axios.get(requests.fetchTodoList);
+    const result = await axios.get(requests.fetchTodo);
     const { items } = result.data;
     setTodoData(items);
   };
@@ -39,7 +39,7 @@ const MainPage = React.memo(() => {
         completed: false,
         mood: todoItem.mood,
       };
-      const result = await axios.post(requests.createTodoItem, newTodoItem);
+      const result = await axios.post(requests.fetchTodo, newTodoItem);
       setTodoItem("");
       setFetchStatus({ ...fetchStatus, success: result.status });
     } else {
