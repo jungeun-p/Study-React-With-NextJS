@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../../api/axios";
+import requests from "../../api/request";
 import { initialMoodData, initialTodoData } from "../../assets/data";
 import "./Category.css";
 import CategoryIndex from "./CategoryIndex";
 
 const Category = () => {
-  const [mood, setMood] = useState(initialMoodData);
+  const [mood, setMood] = useState([]);
 
+  const fetchMoodData = async () => {
+    const result = await axios.get(requests.fetchMood);
+    const { items } = result.data;
+    setMood(items);
+  };
+
+  useEffect(() => {
+    fetchMoodData();
+  }, []);
+  
   // Create moodValue
   const moodValueNum = (moodValue) => {
     const todoMood = initialTodoData
