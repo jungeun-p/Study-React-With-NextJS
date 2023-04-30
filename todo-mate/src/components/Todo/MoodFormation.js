@@ -1,33 +1,38 @@
+import axios from "../../api/axios";
 import React, { useState } from "react";
-import { dataLocalStorage } from "../../assets/data";
 import "./MoodFormation.css";
+import requests from "../../api/request";
 
-const MoodFormation = ({ mood, setMood }) => {
+const MoodFormation = ({ mood, fetchStatus, setFetchStatus, setMoodEdit }) => {
   const [newMood, setNewMood] = useState({
     moodEmoji: "",
     moodValue: "",
   });
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewMood({ ...newMood, [name]: value });
   };
 
-  const createMood = (e) => {
+  const createMood = async (e) => {
     e.preventDefault();
-    let newMoodItem = {
-      id: createMoodId(),
-      moodEmoji: newMood.moodEmoji,
+    const newMoodItem = {
+      moodId: createMoodId(),
       moodValue: newMood.moodValue,
+      moodEmoji: newMood.moodEmoji,
       checked: false,
     };
-    setMood((prev) => [...prev, newMoodItem]);
-    dataLocalStorage("moodData", [...mood, newMoodItem]);
+    console.log(newMoodItem);
+    const result = await axios.post(requests.fetchMood, newMoodItem);
+    // setMood((prev) => [...prev, newMoodItem]);
+    // dataLocalStorage("moodData", [...mood, newMoodItem]);
     setNewMood("");
+    setMoodEdit(false);
+    setFetchStatus({ ...fetchStatus, success: result.status });
   };
 
   const createMoodId = () => {
-    const id = mood.map((item) => item.id);
+    const id = mood.map((item) => item.moodId);
     const maxId = Math.max(...id);
     return maxId + 1;
   };
