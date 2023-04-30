@@ -5,7 +5,7 @@ import { dataLocalStorage } from "../../assets/data";
 import TodoItem from "./TodoItem";
 import "./TodoList.css";
 
-const TodoList = ({ todoData, setTodoData }) => {
+const TodoList = ({ todoData, fetchStatus, setFetchStatus }) => {
   // Update todoData completed
   // const updateTodoCompleted = useCallback(
   //   (id) => {
@@ -28,6 +28,7 @@ const TodoList = ({ todoData, setTodoData }) => {
       completed: !selectedTodoItem.completed,
     };
     const result = await axios.patch(`${requests.updateTodoItem}/${id}`, data);
+    setFetchStatus({ ...fetchStatus, success: result.status });
   };
 
   // Delete TodoItem
@@ -41,7 +42,8 @@ const TodoList = ({ todoData, setTodoData }) => {
   // );
 
   const deleteTodoItem = async (id) => {
-    return await axios.delete(`${requests.deleteTodoItem}/${id}`);
+    const result = await axios.delete(`${requests.deleteTodoItem}/${id}`);
+    setFetchStatus({ ...fetchStatus, success: result.status });
   };
 
   return (
@@ -57,7 +59,8 @@ const TodoList = ({ todoData, setTodoData }) => {
           contents={todo.contents}
           completed={todo.completed}
           todoData={todoData}
-          setTodoData={setTodoData}
+          fetchStatus={fetchStatus}
+          setFetchStatus={setFetchStatus}
           updateTodoCompleted={updateTodoCompleted}
           deleteTodoItem={deleteTodoItem}
         />

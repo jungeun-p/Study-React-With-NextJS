@@ -13,7 +13,8 @@ const TodoItem = ({
   contents,
   completed,
   todoData,
-  setTodoData,
+  fetchStatus,
+  setFetchStatus,
   updateTodoCompleted,
   deleteTodoItem,
 }) => {
@@ -49,6 +50,7 @@ const TodoItem = ({
     };
     const result = await axios.patch(`${requests.updateTodoItem}/${id}`, data);
     setEditing(false);
+    setFetchStatus({ ...fetchStatus, success: result.status });
   };
 
   // onChange
