@@ -5,19 +5,26 @@ import MoodFormation from "./MoodFormation";
 import MoodSelect from "./MoodSelect";
 import "./TodoForm.css";
 
-const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
+const TodoForm = ({
+  todoItem,
+  setTodoItem,
+  createTodoItem,
+  fetchStatus,
+  setFetchStatus,
+}) => {
   const [mood, setMood] = useState([]);
   const [moodEdit, setMoodEdit] = useState(false);
 
-  const fetchMoodData = async() => {
+  const fetchMoodData = async () => {
     const result = await axios.get(requests.fetchMood);
     const { items } = result.data;
     setMood(items);
-  }
+    setFetchStatus({ ...fetchStatus, success: result.status });
+  };
 
   useEffect(() => {
     fetchMoodData();
-  }, [])
+  }, [fetchStatus]);
 
   const handleChange = useCallback(
     (e) => {
@@ -39,7 +46,14 @@ const TodoForm = ({ todoItem, setTodoItem, createTodoItem }) => {
 
   return (
     <div className="todoFormContainer">
-      {moodEdit && <MoodFormation mood={mood} setMood={setMood} />}
+      {moodEdit && (
+        <MoodFormation
+          mood={mood}
+          fetchStatus={fetchStatus}
+          setFetchStatus={setFetchStatus}
+          setMoodEdit={setMoodEdit}
+        />
+      )}
       <form className="todoForm" onSubmit={createTodoItem}>
         <div className="formInput todoMoodWrapper">
           {mood.map((item) => (
