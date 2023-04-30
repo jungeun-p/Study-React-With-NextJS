@@ -24,7 +24,7 @@ const MainPage = React.memo(() => {
 
   useEffect(() => {
     fetchTodoData();
-  }, [fetchStatus.success]);
+  }, [fetchStatus]);
 
   // Create TodoItem
   const createTodoItem = async (e) => {
@@ -67,7 +67,11 @@ const MainPage = React.memo(() => {
         setTodoItem={setTodoItem}
         createTodoItem={createTodoItem}
       />
-      <TodoList todoData={todoData} setTodoData={setTodoData} />
+      <TodoList
+        todoData={todoData}
+        fetchStatus={fetchStatus}
+        setFetchStatus={setFetchStatus}
+      />
     </>
   );
 });
