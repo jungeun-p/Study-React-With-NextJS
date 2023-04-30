@@ -66,6 +66,8 @@ const MainPage = React.memo(() => {
         todoItem={todoItem}
         setTodoItem={setTodoItem}
         createTodoItem={createTodoItem}
+        fetchStatus={fetchStatus}
+        setFetchStatus={setFetchStatus}
       />
       <TodoList
         todoData={todoData}
