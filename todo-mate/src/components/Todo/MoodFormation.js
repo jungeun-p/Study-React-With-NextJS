@@ -22,7 +22,6 @@ const MoodFormation = ({ mood, fetchStatus, setFetchStatus, setMoodEdit }) => {
       moodEmoji: newMood.moodEmoji,
       checked: false,
     };
-    console.log(newMoodItem);
     const result = await axios.post(requests.fetchMood, newMoodItem);
     // setMood((prev) => [...prev, newMoodItem]);
     // dataLocalStorage("moodData", [...mood, newMoodItem]);
@@ -61,4 +60,4 @@ const MoodFormation = ({ mood, fetchStatus, setFetchStatus, setMoodEdit }) => {
   );
 };
 
-export default MoodFormation;
+export default React.memo(MoodFormation);
