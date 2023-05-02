@@ -19,30 +19,26 @@ const TodoForm = ({
     const result = await axios.get(requests.fetchMood);
     const { items } = result.data;
     setMood(items);
-    setFetchStatus({ ...fetchStatus, success: result.status });
   };
-
+  
   useEffect(() => {
     fetchMoodData();
-  }, [fetchStatus]);
+  }, [fetchStatus.success]);
 
-  const handleChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setTodoItem({ ...todoItem, [name]: value });
-      if (name === "mood") {
-        // checkedMood
-        const newMoodData = mood.map((item) => {
-          item.moodValue === value
-            ? (item.checked = true)
-            : (item.checked = false);
-          return item;
-        });
-        setMood(newMoodData);
-      }
-    },
-    [todoItem, mood]
-  );
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTodoItem({ ...todoItem, [name]: value });
+    if (name === "mood") {
+      // checkedMood
+      const newMoodData = mood.map((item) => {
+        item.moodValue === value
+          ? (item.checked = true)
+          : (item.checked = false);
+        return item;
+      });
+      setMood(newMoodData);
+    }
+  };
 
   return (
     <div className="todoFormContainer">
