@@ -56,6 +56,7 @@ const TodoForm = ({
             <MoodSelect
               key={item.id}
               checked={item.checked}
+              name="mood"
               value={item.moodValue}
               emoji={item.moodEmoji}
               handleChange={handleChange}
