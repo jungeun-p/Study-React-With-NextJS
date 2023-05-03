@@ -24,7 +24,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="mypage" element={<Mypage />} />
-        <Route path=":moodName" element={<MoodPage />} />
+        <Route path=":mood" element={<MoodPage />} />
       </Route>
     </Routes>
   );
