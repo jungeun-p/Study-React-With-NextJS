@@ -20,6 +20,13 @@ const Category = () => {
     fetchTodoData();
   }, []);
 
+  // 중복되는 mood 제거
+  const moodName = () => {
+    const uniqueMood = [
+      ...new Map(mood.map((item) => [item.mood, item])).values(),
+    ];
+    return uniqueMood;
+  };
   const moodValueNum = (moodName) => {
     // moodData에서 해당 mood와 동일한 mood의 갯수를 출력
     const MoodData = mood.filter((todo) => todo.mood === moodName).length;
@@ -28,14 +35,16 @@ const Category = () => {
 
   return (
     <div className="moodCategories">
-      {mood.map((item) => (
-        <CategoryIndex
-          key={item.mood}
-          moodValue={item.mood}
-          // moodEmoji={item.moodEmoji}
-          moodNum={moodValueNum(item.mood)}
-        />
-      ))}
+      {moodName().map(
+        (item) => (
+          <CategoryIndex
+            key={item.id}
+            mood={item.mood}
+            // moodEmoji={item.moodEmoji}
+            moodNum={moodValueNum(item.mood)}
+          />
+        )
+      )}
     </div>
   );
 };
