@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import requests from "../../api/request";
 import axios from "../../api/axios";
 import MoodFormation from "./MoodFormation";
 import MoodSelect from "./MoodSelect";
 import "./TodoForm.css";
+import { FormButton, FormInput } from "../Form";
 
 const TodoForm = ({
   todoItem,
@@ -20,7 +21,7 @@ const TodoForm = ({
     const { items } = result.data;
     setMood(items);
   };
-  
+
   useEffect(() => {
     fetchMoodData();
   }, [fetchStatus.success]);
@@ -66,23 +67,21 @@ const TodoForm = ({
             ⚙️
           </div>
         </div>
-        <input
-          className="formInput"
+        <FormInput
           type="text"
           name="title"
           value={todoItem.title || ""}
           placeholder="title"
           onChange={handleChange}
         />
-        <input
-          className="formInput"
+        <FormInput
           type="text"
           name="contents"
           value={todoItem.contents || ""}
           placeholder="contents"
           onChange={handleChange}
         />
-        <input className="formButton" type="submit" value="Add" />
+        <FormButton type="submit">Add</FormButton>
       </form>
     </div>
   );
