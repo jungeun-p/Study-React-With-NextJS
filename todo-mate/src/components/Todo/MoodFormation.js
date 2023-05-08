@@ -1,7 +1,8 @@
 import axios from "../../api/axios";
 import React, { useState } from "react";
-import "./MoodFormation.css";
 import requests from "../../api/request";
+import styled from "styled-components";
+import { FormButton, FormInput } from "../../components/Form";
 
 const MoodFormation = ({ mood, fetchStatus, setFetchStatus, setMoodEdit }) => {
   const [newMood, setNewMood] = useState({
@@ -36,28 +37,29 @@ const MoodFormation = ({ mood, fetchStatus, setFetchStatus, setMoodEdit }) => {
     return maxId + 1;
   };
   return (
-    <div className="moodFormationContainer">
-      <form className="moodForm" onSubmit={createMood}>
-        <input
-          // className="formInput"
-          type="text"
-          name="moodEmoji"
-          value={newMood.moodEmoji || ""}
-          placeholder="emoji"
-          onChange={handleChange}
-        />
-        <input
-          // className="formInput"
-          type="text"
-          name="moodValue"
-          value={newMood.moodValue || ""}
-          placeholder="name"
-          onChange={handleChange}
-        />
-        <input type="submit" value="✅"></input>
-      </form>
-    </div>
+    <MoodFormContainer onSubmit={createMood}>
+      <FormInput
+        type="text"
+        name="moodEmoji"
+        value={newMood.moodEmoji || ""}
+        placeholder="emoji"
+        onChange={handleChange}
+      />
+      <FormInput
+        type="text"
+        name="moodValue"
+        value={newMood.moodValue || ""}
+        placeholder="name"
+        onChange={handleChange}
+      />
+      <FormButton type="submit">Create</FormButton>
+    </MoodFormContainer>
   );
 };
+
+const MoodFormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default React.memo(MoodFormation);
