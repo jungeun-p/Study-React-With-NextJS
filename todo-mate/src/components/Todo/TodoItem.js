@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import axios from "../../api/axios";
 import requests from "../../api/request";
 import "./TodoItem.css";
@@ -79,11 +80,7 @@ const TodoItem = ({
   return (
     <>
       {editing ? (
-        <div
-          className={`todoItemContainer 
-          ${todoId % 2 === 1 ? "black" : "white"} 
-          ${completed && "finished"}`}
-        >
+        <TodoItemContainer completed={completed ? "finished" : undefined}>
           <div className="topWrapper">
             <div className="titleWrapper">
               <div className="todoTitleWrapper">
@@ -116,13 +113,9 @@ const TodoItem = ({
           <div className="bottomWrapper">
             <div className="todoDate">{date}</div>
           </div>
-        </div>
+        </TodoItemContainer>
       ) : (
-        <div
-          className={`todoItemContainer 
-          ${todoId % 2 === 1 ? "black" : "white"} 
-          ${completed && "finished"}`}
-        >
+        <TodoItemContainer completed={completed ? "finished" : undefined}>
           <div className="topWrapper">
             <div className="titleWrapper">
               <div className="todoTitleWrapper">
@@ -148,10 +141,19 @@ const TodoItem = ({
           <div className="bottomWrapper">
             <div className="todoDate">{date}</div>
           </div>
-        </div>
+        </TodoItemContainer>
       )}
     </>
   );
 };
+
+const TodoItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: ${(props) => (props.completed ? `lightgray` : `white`)};
+  color: ${(props) => (props.completed ? `gray` : `black`)};
+`;
 
 export default React.memo(TodoItem);

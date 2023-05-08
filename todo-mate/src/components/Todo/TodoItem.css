@@ -1,17 +1,3 @@
-.todoItemContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-}
-.black {
-  background-color: black;
-  color: white;
-}
-.finished {
-  background-color: lightgray;
-  color: gray;
-}
 .titleWrapper {
   display: flex;
   flex-direction: row;
