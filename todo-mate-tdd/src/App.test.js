@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+// todolist에 3개의 todoitme이 존재한다. 
+test('todoData array lentgh is three', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const length = screen.getByTestId("todoDataLength");
+  expect(length).toHaveTextContent("3");
 });
