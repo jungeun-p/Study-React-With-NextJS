@@ -40,7 +40,8 @@ function App() {
       content: "concentrate",
     },
   ]);
-  
+  const [edited, setEdited] = useState(false);
+
   return (
     <MoodDiaryWrapper>
       <TopRow>
@@ -52,7 +53,16 @@ function App() {
         {moodData.map((item) => (
           <div key={item.id}>{item.mood}</div>
         ))}
-        <div className="createMood" data-testid="createMood">？</div>
+        <CreateMoodButton
+          className="createMood"
+          onClick={() => setEdited(!edited)}
+          data-testid="createMood"
+        >
+          ？
+        </CreateMoodButton>
+        {edited && (
+          <CreateMoodForm data-testid="createForm">form</CreateMoodForm>
+        )}
       </BottomRow>
     </MoodDiaryWrapper>
   );
@@ -78,6 +88,18 @@ const BottomRow = styled.div`
   align-items: center;
   justify-items: center;
   padding: 10px 0;
+  font-size: 20px;
 `;
+
+const CreateMoodButton = styled.button`
+  background: none;
+  outline: none;
+  border: none;
+  padding: 6px 8px;
+  background-color: lightgray;
+  border-radius: 50%;
+`;
+
+const CreateMoodForm = styled.form``;
 
 export default App;
