@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
+import { MoodForm } from "./components/MoodForm";
 
 function App() {
   const [moodData, setMoodData] = useState([
@@ -53,16 +54,14 @@ function App() {
         {moodData.map((item) => (
           <div key={item.id}>{item.mood}</div>
         ))}
-        <CreateMoodButton
-          className="createMood"
+        <OpenMoodForm
+          className="openMoodForm"
           onClick={() => setEdited(!edited)}
-          data-testid="createMood"
+          data-testid="openMoodForm"
         >
           ？
-        </CreateMoodButton>
-        {edited && (
-          <CreateMoodForm data-testid="createForm">form</CreateMoodForm>
-        )}
+        </OpenMoodForm>
+        {edited && <MoodForm setMoodData={setMoodData} />}
       </BottomRow>
     </MoodDiaryWrapper>
   );
@@ -91,7 +90,7 @@ const BottomRow = styled.div`
   font-size: 20px;
 `;
 
-const CreateMoodButton = styled.button`
+const OpenMoodForm = styled.button`
   background: none;
   outline: none;
   border: none;
@@ -99,7 +98,5 @@ const CreateMoodButton = styled.button`
   background-color: lightgray;
   border-radius: 50%;
 `;
-
-const CreateMoodForm = styled.form``;
 
 export default App;
