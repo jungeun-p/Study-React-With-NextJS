@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
-export const MoodForm = ({ setMoodData }) => {
+export const MoodForm = ({ setMoodData, setEdited }) => {
   const [moodItem, setMoodItem] = useState({
     id: "",
     mood: "",
-    contents: "",
+    content: "",
   });
 
   const createMood = (e) => {
@@ -12,10 +13,11 @@ export const MoodForm = ({ setMoodData }) => {
     let newMoodData = {
       id: Date.now(),
       mood: moodItem.mood,
-      contents: moodItem.contents,
+      content: moodItem.content,
     };
     setMoodData((prev) => [...prev, newMoodData]);
     setMoodItem("");
+    setEdited(false)
   };
 
   const handleChange = (e) => {
@@ -24,24 +26,56 @@ export const MoodForm = ({ setMoodData }) => {
   };
 
   return (
-    <form data-testid="createMood" onSubmit={createMood}>
-      <input
+    <CreateMoodForm data-testid="createMood" onSubmit={createMood}>
+      <MoodFormInput
         type="text"
         name="mood"
         value={moodItem.mood || ""}
         placeholder="emoji"
         onChange={handleChange}
       />
-      <input
+      <MoodFormInput
         type="text"
-        name="contents"
-        value={moodItem.contents || ""}
-        placeholder="contents"
+        name="content"
+        value={moodItem.content || ""}
+        placeholder="content"
         onChange={handleChange}
       />
-      <button data-testid="createMoodButton" type="submit">
+      <CreateMoodButton data-testid="createMoodButton" type="submit">
         Add
-      </button>
-    </form>
+      </CreateMoodButton>
+    </CreateMoodForm>
   );
 };
+
+const CreateMoodForm = styled.form`
+  background-color: lightgray;
+  position: fixed;
+  bottom: 0;
+  height: 40vh;
+  width: 100vw;
+  border-radius: 30px 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+const MoodFormInput = styled.input`
+  border: none;
+  background-color: none;
+  outline: none;
+  font-size: 25px;
+  padding: 15px;
+  margin: 0 15px;
+  border-radius: 15px;
+`;
+
+const CreateMoodButton = styled.button`
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  padding: 15px;
+  margin: 0 15px;
+  border-radius: 15px;
+`;
