@@ -42,27 +42,43 @@ function App() {
     },
   ]);
   const [edited, setEdited] = useState(false);
+  const [moodContent, setMoodContent] = useState();
 
+  const viewMoodContent = (id) => {
+    const moodValue = moodData.find((item) => item.id === id);
+    setMoodContent(moodValue.content);
+  };
+  
   return (
     <MoodDiaryWrapper>
       <TopRow>
-        <h3>😶</h3>
-        <h3>Mood Diary</h3>
+        <h2>😶</h2>
+        <h2>Mood Diary</h2>
         <div data-testid="moodDataLength">({moodData.length})</div>
       </TopRow>
       <BottomRow>
         {moodData.map((item) => (
-          <div key={item.id}>{item.mood}</div>
+          <MoodRow key={item.id}>
+            <MoodEmoji
+              data-testid={`${item.content}`}
+              key={item.id}
+              onClick={() => viewMoodContent(item.id)}
+            >
+              {item.mood}
+            </MoodEmoji>
+            {moodContent === item.content && (
+              <MoodValue data-testid="moodValue">{item.content}</MoodValue>
+            )}
+          </MoodRow>
         ))}
         <OpenMoodForm
-          className="openMoodForm"
           onClick={() => setEdited(!edited)}
           data-testid="openMoodForm"
         >
           ？
         </OpenMoodForm>
-        {edited && <MoodForm setMoodData={setMoodData} />}
       </BottomRow>
+      {edited && <MoodForm setMoodData={setMoodData} setEdited={setEdited} />}
     </MoodDiaryWrapper>
   );
 }
@@ -83,18 +99,36 @@ const TopRow = styled.div`
 const BottomRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  row-gap: 10px;
+  row-gap: 20px;
   align-items: center;
   justify-items: center;
   padding: 10px 0;
-  font-size: 20px;
+`;
+
+const MoodRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const MoodEmoji = styled.div`
+  font-size: 30px;
+`;
+
+const MoodValue = styled.div`
+  font-size: 8px;
+  position: fixed;
+  background-color: white;
+  opacity: 70%;
+  transform: translateY(100%);
 `;
 
 const OpenMoodForm = styled.button`
   background: none;
   outline: none;
   border: none;
-  padding: 6px 8px;
+  padding: 8px 10px;
   background-color: lightgray;
   border-radius: 50%;
 `;
