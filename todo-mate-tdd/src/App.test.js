@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
-import { MoodForm } from "./components/MoodForm";
 
 // moodlist에 7개의 todoitme이 존재한다.
 test("moodData array lentgh is seven", () => {
@@ -34,4 +33,13 @@ test("if push Add button, moodData change to 8", () => {
   fireEvent.click(createButton);
   const length = screen.getByTestId("moodDataLength");
   expect(length).toHaveTextContent("8");
+});
+
+// if Click happy MoodRow, open the mood value
+test("if click happy MoodRow, open the moodValue", () => {
+  render(<App />);
+  const rowElement = screen.getByTestId("happy");
+  fireEvent.click(rowElement);
+  const value = screen.getByTestId("moodValue");
+  expect(value).toHaveTextContent("happy")
 });
