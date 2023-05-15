@@ -35,7 +35,7 @@ test("if push Add button, moodData change to 8", () => {
   expect(length).toHaveTextContent("8");
 });
 
-// if Click happy MoodRow, show up mood value text
+// if mouse oever happy MoodRow, show up mood value text
 test("if mouse over happy MoodRow, show up mood value text", () => {
   render(<App />);
   const rowElement = screen.getByTestId("happy");
