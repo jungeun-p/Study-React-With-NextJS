@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import { MoodForm } from "./components/MoodForm";
+import MoodRow from "./components/MoodRow";
 
 function App() {
   const [moodData, setMoodData] = useState([
@@ -48,28 +49,25 @@ function App() {
     const moodValue = moodData.find((item) => item.id === id);
     setMoodContent(moodValue.content);
   };
-  
+
   return (
     <MoodDiaryWrapper>
       <TopRow>
-        <h2>😶</h2>
+        <h2>🫥</h2>
         <h2>Mood Diary</h2>
         <div data-testid="moodDataLength">({moodData.length})</div>
       </TopRow>
       <BottomRow>
         {moodData.map((item) => (
-          <MoodRow key={item.id}>
-            <MoodEmoji
-              data-testid={`${item.content}`}
-              key={item.id}
-              onClick={() => viewMoodContent(item.id)}
-            >
-              {item.mood}
-            </MoodEmoji>
-            {moodContent === item.content && (
-              <MoodValue data-testid="moodValue">{item.content}</MoodValue>
-            )}
-          </MoodRow>
+          <MoodRow
+            key={item.id}
+            id={item.id}
+            content={item.content}
+            mood={item.mood}
+            moodContent={moodContent}
+            setMoodContent={setMoodContent}
+            viewMoodContent={viewMoodContent}
+          />
         ))}
         <OpenMoodForm
           onClick={() => setEdited(!edited)}
@@ -103,25 +101,6 @@ const BottomRow = styled.div`
   align-items: center;
   justify-items: center;
   padding: 10px 0;
-`;
-
-const MoodRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const MoodEmoji = styled.div`
-  font-size: 30px;
-`;
-
-const MoodValue = styled.div`
-  font-size: 8px;
-  position: fixed;
-  background-color: white;
-  opacity: 70%;
-  transform: translateY(100%);
 `;
 
 const OpenMoodForm = styled.button`
