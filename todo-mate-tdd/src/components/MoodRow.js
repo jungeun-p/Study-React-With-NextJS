@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import MoodPage from "./MoodPage";
 
 const MoodRow = ({
   id,
@@ -9,20 +10,27 @@ const MoodRow = ({
   setMoodContent,
   viewMoodContent,
 }) => {
+  const [moodDetail, setMoodDetail] = useState(false);
   return (
-    <MoodElement>
-      <MoodEmoji
-        data-testid={`${content}`}
-        key={id}
-        onMouseOver={() => viewMoodContent(id)}
-        onMouseLeave={() => setMoodContent("")}
+    <>
+      <MoodElement
+        data-testid="moodRow"
+        onClick={() => setMoodDetail(!moodDetail)}
       >
-        {mood}
-      </MoodEmoji>
-      {moodContent === content && (
-        <MoodValue data-testid="moodValue">{content}</MoodValue>
-      )}
-    </MoodElement>
+        <MoodEmoji
+          data-testid={`${content}`}
+          key={id}
+          onMouseOver={() => viewMoodContent(id)}
+          onMouseLeave={() => setMoodContent("")}
+        >
+          {mood}
+        </MoodEmoji>
+        {moodContent === content && (
+          <MoodValue data-testid="moodValue">{content}</MoodValue>
+        )}
+      </MoodElement>
+      {moodDetail && <MoodPage />}
+    </>
   );
 };
 
