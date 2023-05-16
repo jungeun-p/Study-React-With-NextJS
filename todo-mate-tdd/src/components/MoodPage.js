@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const MoodPage = () => {
-  return <MoodDetailPage data-testid="moodDetailPage">MoodPage</MoodDetailPage>;
+const MoodPage = ({ id, content, deleteMood }) => {
+  return (
+    <MoodDetailPage data-testid="moodDetailPage">
+      <div>{content}</div>
+      <div data-testid="deleteButton" onClick={() => deleteMood(id)}>
+        Delete
+      </div>
+      <div>Update</div>
+    </MoodDetailPage>
+  );
 };
 
 const MoodDetailPage = styled.form`
