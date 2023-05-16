@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
+import MoodPage from "./components/MoodPage";
 import MoodRow from "./components/MoodRow";
 
 // moodlist에 7개의 todoitme이 존재한다.
@@ -52,4 +53,13 @@ test("if push MoodRow element, show up detailPage", () => {
   fireEvent.click(rowElement);
   const page = screen.getByTestId("moodDetailPage");
   expect(page).toBeEnabled();
+})
+
+// if push delete button, moodData length is 7 to 6
+test("if push delete button, moodData length is 7 to 6", () => {
+  render(<MoodPage />);
+  const button = screen.getByTestId("deleteButton");
+  fireEvent.click(button);
+  const totalLength = screen.getByTestId("moodDataLength");
+  expect(totalLength).toHaveTextContent("6");
 })
