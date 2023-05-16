@@ -67,6 +67,8 @@ function App() {
             moodContent={moodContent}
             setMoodContent={setMoodContent}
             viewMoodContent={viewMoodContent}
+            moodData={moodData}
+            setMoodData={setMoodData}
           />
         ))}
         <OpenMoodForm

@@ -9,8 +9,14 @@ const MoodRow = ({
   moodContent,
   setMoodContent,
   viewMoodContent,
+  moodData,
+  setMoodData,
 }) => {
   const [moodDetail, setMoodDetail] = useState(false);
+  const deleteMood = (id) => {
+    let newMoodData = moodData.filter((item) => item.id !== id);
+    setMoodData(newMoodData);
+  };
   return (
     <>
       <MoodElement
@@ -29,7 +35,13 @@ const MoodRow = ({
           <MoodValue data-testid="moodValue">{content}</MoodValue>
         )}
       </MoodElement>
-      {moodDetail && <MoodPage />}
+      {moodDetail && (
+        <MoodPage
+          id={id}
+          content={content}
+          deleteMood={deleteMood}
+        />
+      )}
     </>
   );
 };
