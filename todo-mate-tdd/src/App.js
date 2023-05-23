@@ -42,7 +42,7 @@ function App() {
       content: "concentrate",
     },
   ]);
-  const [edited, setEdited] = useState(false);
+  const [form, setForm] = useState(false);
   const [moodContent, setMoodContent] = useState();
 
   const viewMoodContent = (id) => {
@@ -72,13 +72,13 @@ function App() {
           />
         ))}
         <OpenMoodForm
-          onClick={() => setEdited(!edited)}
+          onClick={() => setForm(!form)}
           data-testid="openMoodForm"
         >
           ？
         </OpenMoodForm>
       </BottomRow>
-      {edited && <MoodForm setMoodData={setMoodData} setEdited={setEdited} />}
+      {form && <MoodForm setMoodData={setMoodData} setForm={setForm} />}
     </MoodDiaryWrapper>
   );
 }
