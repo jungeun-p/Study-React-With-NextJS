@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MoodPage from "./MoodPage";
+import { MoodForm } from "./MoodForm";
+// import MoodPage from "./MoodPage";
 
 const MoodRow = ({
   id,
@@ -13,10 +14,13 @@ const MoodRow = ({
   setMoodData,
 }) => {
   const [moodDetail, setMoodDetail] = useState(false);
+  const [edited, setEdited] = useState(false);
+
   const deleteMood = (id) => {
     let newMoodData = moodData.filter((item) => item.id !== id);
     setMoodData(newMoodData);
   };
+
   return (
     <>
       <MoodElement
@@ -35,12 +39,44 @@ const MoodRow = ({
           <MoodValue data-testid="moodValue">{content}</MoodValue>
         )}
       </MoodElement>
+      {/* {moodDetail && (
+        <MoodPage id={id} content={content} deleteMood={deleteMood} />
+      )} */}
       {moodDetail && (
-        <MoodPage
-          id={id}
-          content={content}
-          deleteMood={deleteMood}
-        />
+        <MoodDetailPage data-testid="moodDetailPage">
+          {edited ? (
+            <div data-testid="moodForm">
+              <div>updateform</div>
+              <div onClick={() => setEdited(!edited)}>🔙</div>
+              <input
+                type="text"
+                name="mood"
+                value={mood || ""}
+                onChange={() => {}}
+              />
+              <input
+                type="text"
+                name="content"
+                value={content || ""}
+                onChange={() => {}}
+              />
+              <button>Update</button>
+            </div>
+          ) : (
+            <>
+              <div>{content}</div>
+              <div data-testid="deleteButton" onClick={() => deleteMood(id)}>
+                Delete
+              </div>
+              <div
+                data-testid="updateButton"
+                onClick={() => setEdited(!edited)}
+              >
+                Update
+              </div>
+            </>
+          )}
+        </MoodDetailPage>
       )}
     </>
   );
@@ -64,6 +100,18 @@ const MoodValue = styled.div`
   background-color: white;
   opacity: 70%;
   transform: translateY(100%);
+`;
+
+const MoodDetailPage = styled.form`
+  background-color: lightgray;
+  position: fixed;
+  bottom: 0;
+  height: 40vh;
+  width: 100vw;
+  border-radius: 30px 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
 export default React.memo(MoodRow);

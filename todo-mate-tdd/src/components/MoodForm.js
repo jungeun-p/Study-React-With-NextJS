@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export const MoodForm = ({ setMoodData, setEdited }) => {
+export const MoodForm = ({ setMoodData, setForm }) => {
   const [moodItem, setMoodItem] = useState({
     id: "",
     mood: "",
@@ -17,7 +17,7 @@ export const MoodForm = ({ setMoodData, setEdited }) => {
     };
     setMoodData((prev) => [...prev, newMoodData]);
     setMoodItem("");
-    setEdited(false)
+    setForm(false)
   };
 
   const handleChange = (e) => {
