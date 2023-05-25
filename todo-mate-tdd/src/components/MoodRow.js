@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { MoodForm } from "./MoodForm";
-// import MoodPage from "./MoodPage";
 
 const MoodRow = ({
   id,
@@ -15,10 +14,33 @@ const MoodRow = ({
 }) => {
   const [moodDetail, setMoodDetail] = useState(false);
   const [edited, setEdited] = useState(false);
-
+  const [newMoodItem, setNewMoodItem] = useState({
+    id,
+    mood,
+    content,
+  });
+  
   const deleteMood = (id) => {
     let newMoodData = moodData.filter((item) => item.id !== id);
     setMoodData(newMoodData);
+  };
+
+  const updateMood = (e) => {
+    e.preventDefault();
+    let newMoodData = moodData.map((item) => {
+      if (item.id === id) {
+        item.mood = newMoodItem.mood;
+        item.content = newMoodItem.content;
+      }
+      return item;
+    });
+    setMoodData(newMoodData);
+    setEdited(false);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewMoodItem({ ...newMoodItem, [name]: value });
   };
 
   return (
@@ -45,23 +67,25 @@ const MoodRow = ({
       {moodDetail && (
         <MoodDetailPage data-testid="moodDetailPage">
           {edited ? (
-            <div data-testid="moodForm">
+            <form data-testid="moodForm" onSubmit={updateMood}>
               <div>updateform</div>
-              <div onClick={() => setEdited(!edited)}>🔙</div>
+              <div onClick={() => setEdited(!edited)}>back</div>
               <input
                 type="text"
                 name="mood"
-                value={mood || ""}
-                onChange={() => {}}
+                value={newMoodItem.mood}
+                onChange={handleChange}
               />
               <input
                 type="text"
                 name="content"
-                value={content || ""}
-                onChange={() => {}}
+                value={newMoodItem.content}
+                onChange={handleChange}
               />
-              <button>Update</button>
-            </div>
+              <button data-testid="updateButton" type="submit">
+                Update
+              </button>
+            </form>
           ) : (
             <>
               <div>{content}</div>
@@ -69,7 +93,7 @@ const MoodRow = ({
                 Delete
               </div>
               <div
-                data-testid="updateButton"
+                data-testid="openFormButton"
                 onClick={() => setEdited(!edited)}
               >
                 Update
@@ -102,7 +126,7 @@ const MoodValue = styled.div`
   transform: translateY(100%);
 `;
 
-const MoodDetailPage = styled.form`
+const MoodDetailPage = styled.div`
   background-color: lightgray;
   position: fixed;
   bottom: 0;
