@@ -68,8 +68,23 @@ test("if push update button, open the moodForm", () => {
   render(<MoodRow />);
   const rowElement = screen.getByTestId("moodRow");
   fireEvent.click(rowElement);
-  const button = screen.getByTestId("updateButton");
+  const button = screen.getByTestId("openFormButton");
   fireEvent.click(button);
   const form = screen.getByTestId("moodForm");
   expect(form).toBeEnabled();
+})
+
+test("it can change 'happy' mood conent to 'shine' from moodForm", () => {
+  render(<MoodRow />);
+  const rowElement = screen.getByTestId("moodRow");
+  fireEvent.click(rowElement);
+  const button = screen.getByTestId("openFormButton");
+  fireEvent.click(button);
+  const form = screen.getByTestId("moodForm");
+  expect(form).toBeEnabled();
+  const updateButton = screen.getByTestId("updateButton");
+  fireEvent.click(updateButton);
+  // render(<App />);
+  // const shineRowElement = screen.getByTestId("shine");
+  // expect(shineRowElement).toBe();
 })
