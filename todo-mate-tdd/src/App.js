@@ -71,10 +71,7 @@ function App() {
             setMoodData={setMoodData}
           />
         ))}
-        <OpenMoodForm
-          onClick={() => setForm(!form)}
-          data-testid="openMoodForm"
-        >
+        <OpenMoodForm onClick={() => setForm(!form)} data-testid="openMoodForm">
           ？
         </OpenMoodForm>
       </BottomRow>
